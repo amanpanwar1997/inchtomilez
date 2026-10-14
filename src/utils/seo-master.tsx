@@ -394,6 +394,8 @@ export function generateArticleSchema(
   const schema: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${SITE_CONFIG.url}${path}#article`,
+    url: `${SITE_CONFIG.url}${path}`,
 
     headline: seoData.h1,
 
@@ -465,10 +467,7 @@ export function generateServiceSchema(
     url: `${SITE_CONFIG.url}${path}`,
 
     provider: {
-      '@type': 'Organization',
-      '@id': `${SITE_CONFIG.url}/#organization`,
-      name: SITE_CONFIG.name,
-      url: SITE_CONFIG.url
+      '@id': `${SITE_CONFIG.url}/#organization`
     },
 
     areaServed: [

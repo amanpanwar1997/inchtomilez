@@ -44,12 +44,16 @@ jobs:
       - name: Audit structured data graph
         run: node scripts/audit-schema-graph.cjs
 
+      - name: Audit prerendered internal links
+        run: node scripts/audit-prerender-links.cjs
+
       - name: Save validation reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: inchtomilez-ssg-validation
           path: |
+            prerender-links-audit.json
             seo-prerender-report/
             seo-prerender-history/
             ssg-source-audit/

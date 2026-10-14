@@ -184,6 +184,10 @@ export const ORGANIZATION_SCHEMA = {
       name: 'Indore'
     },
     {
+      '@type': 'City',
+      name: 'Pune'
+    },
+    {
       '@type': 'State',
       name: 'Madhya Pradesh'
     },
@@ -255,6 +259,9 @@ export const LOCAL_BUSINESS_SCHEMA = {
     '@id': `${SITE_CONFIG.url}/#organization`
   },
 
+  // INCHTOMILEZ_LOCAL_SEO_V2: primary office identity only; no fake reviews or geo.
+  branchOf: { '@id': `${SITE_CONFIG.url}/#organization` },
+
   sameAs: [
     SITE_CONFIG.social.facebook,
     SITE_CONFIG.social.twitter,
@@ -279,7 +286,8 @@ export const OFFICE_BRANCH_SCHEMAS = [
       addressRegion: 'Madhya Pradesh',
       addressCountry: 'IN'
     },
-    parentOrganization: { '@id': `${SITE_CONFIG.url}/#organization` }
+    parentOrganization: { '@id': `${SITE_CONFIG.url}/#organization` },
+    branchOf: { '@id': `${SITE_CONFIG.url}/#organization` }
   },
   {
     '@context': 'https://schema.org',
@@ -295,7 +303,8 @@ export const OFFICE_BRANCH_SCHEMAS = [
       addressRegion: 'Maharashtra',
       addressCountry: 'IN'
     },
-    parentOrganization: { '@id': `${SITE_CONFIG.url}/#organization` }
+    parentOrganization: { '@id': `${SITE_CONFIG.url}/#organization` },
+    branchOf: { '@id': `${SITE_CONFIG.url}/#organization` }
   }
 ];
 
@@ -466,6 +475,10 @@ export function generateServiceSchema(
       {
         '@type': 'City',
         name: 'Indore'
+      },
+      {
+        '@type': 'City',
+        name: 'Pune'
       },
       {
         '@type': 'State',

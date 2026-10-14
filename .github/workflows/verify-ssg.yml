@@ -1,4 +1,4 @@
-﻿name: Verify InchToMilez SSG
+name: Verify InchToMilez SSG
 
 on:
   workflow_dispatch:
@@ -39,6 +39,8 @@ jobs:
       - name: Verify Vercel static output
         run: node scripts/prepare-vercel-output.cjs
 
+      - name: Audit rendered technical SEO
+        run: node scripts/audit-rendered-seo.cjs
       - name: Save validation reports
         if: always()
         uses: actions/upload-artifact@v4

@@ -45,6 +45,7 @@ export const SITE_CONFIG = {
    * Primary GBP phone number.
    */
   phone: '+91-9009970709',
+  phones: ['+919009970709', '+919669988666', '+919009979600'],
 
   /**
    * Primary website contact email.
@@ -155,6 +156,20 @@ export const ORGANIZATION_SCHEMA = {
   contactPoint: [
     {
       '@type': 'ContactPoint',
+      telephone: '+919669988666',
+      contactType: 'customer service',
+      areaServed: 'IN',
+      availableLanguage: ['English', 'Hindi']
+    },
+    {
+      '@type': 'ContactPoint',
+      telephone: '+919009979600',
+      contactType: 'customer service',
+      areaServed: 'IN',
+      availableLanguage: ['English', 'Hindi']
+    },
+    {
+      '@type': 'ContactPoint',
       telephone: SITE_CONFIG.phone,
       contactType: 'customer service',
       email: SITE_CONFIG.email,
@@ -209,7 +224,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
 
   url: SITE_CONFIG.url,
 
-  telephone: SITE_CONFIG.phone,
+  telephone: SITE_CONFIG.phones,
 
   email: SITE_CONFIG.email,
 
@@ -247,6 +262,42 @@ export const LOCAL_BUSINESS_SCHEMA = {
     SITE_CONFIG.social.instagram
   ]
 };
+
+
+// Published on the homepage only. We omit unverified street addresses and coordinates.
+export const OFFICE_BRANCH_SCHEMAS = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE_CONFIG.url}/#office-indore-rajendra-nagar`,
+    name: `${SITE_CONFIG.name} — Rajendra Nagar`,
+    url: SITE_CONFIG.url,
+    telephone: SITE_CONFIG.phones,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Indore',
+      addressRegion: 'Madhya Pradesh',
+      addressCountry: 'IN'
+    },
+    parentOrganization: { '@id': `${SITE_CONFIG.url}/#organization` }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${SITE_CONFIG.url}/#office-pune-nashik-phata`,
+    name: `${SITE_CONFIG.name} — Pune`,
+    url: SITE_CONFIG.url,
+    telephone: '+919009979600',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: "855, Gera's Imperium Gateway, Nashik Phata",
+      addressLocality: 'Pimpri-Chinchwad',
+      addressRegion: 'Maharashtra',
+      addressCountry: 'IN'
+    },
+    parentOrganization: { '@id': `${SITE_CONFIG.url}/#organization` }
+  }
+];
 
 // ============================================================================
 // BREADCRUMB GENERATOR
@@ -487,7 +538,8 @@ export function useSEO() {
       );
 
       structuredData.push(
-        LOCAL_BUSINESS_SCHEMA
+        LOCAL_BUSINESS_SCHEMA,
+        ...OFFICE_BRANCH_SCHEMAS
       );
     }
 

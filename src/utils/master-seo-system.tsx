@@ -42,12 +42,13 @@ export const SITE_CONFIG = {
   // Contact
   email: 'info@inchtomilez.com',
   phone: '+91-9669988666',
+  phones: ['+919669988666', '+919009970709', '+919009979600'],
   address: {
-    street: '123 Business District',
+    street: '7th Floor Block A, Metro Tower, Sch No 54, Vijay Nagar, Scheme 54 PU4',
     city: 'Indore',
     state: 'Madhya Pradesh',
     country: 'India',
-    postalCode: '452001'
+    postalCode: '452010'
   },
   
   // Social
@@ -134,7 +135,7 @@ export function generateOrganizationSchema() {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: SITE_CONFIG.phone,
+      telephone: SITE_CONFIG.phones,
       contactType: 'Customer Service',
       email: SITE_CONFIG.email,
       areaServed: 'IN',

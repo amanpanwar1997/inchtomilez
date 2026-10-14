@@ -1,0 +1,52 @@
+﻿name: Verify InchToMilez SSG
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Install browser libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libnspr4 libnss3 libgbm1 libatk1.0-0 libatk-bridge2.0-0 libasound2t64 libxcomposite1 libxdamage1 libxrandr2 libxfixes3
+
+      - name: Install Chrome
+        run: npx puppeteer browsers install chrome
+
+      - name: TypeScript verification
+        run: npm run typecheck
+
+      - name: Build and verify prerendered pages
+        run: npm run build:seo
+
+      - name: Verify Vercel static output
+        run: node scripts/prepare-vercel-output.cjs
+
+      - name: Save validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: inchtomilez-ssg-validation
+          path: |
+            seo-prerender-report/
+            seo-prerender-history/
+            ssg-source-audit/
+            .vercel/output/config.json
+          if-no-files-found: warn

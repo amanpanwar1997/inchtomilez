@@ -1,44 +1,44 @@
 {
   "version": "1.0",
   "lastUpdated": "2025-11-02",
-  "domain": "https://inchtomilez.com",
+  "domain": "https://www.inchtomilez.com",
   "totalPages": 262,
   "crawlPriority": {
     "critical": {
       "description": "Highest priority pages - crawl immediately",
       "pages": [
         {
-          "url": "https://inchtomilez.com/",
+          "url": "https://www.inchtomilez.com/",
           "priority": 1.0,
           "changefreq": "daily",
           "importance": "Homepage - Main entry point"
         },
         {
-          "url": "https://inchtomilez.com/services",
+          "url": "https://www.inchtomilez.com/services",
           "priority": 0.9,
           "changefreq": "weekly",
           "importance": "Main services overview"
         },
         {
-          "url": "https://inchtomilez.com/contact",
+          "url": "https://www.inchtomilez.com/contact",
           "priority": 0.9,
           "changefreq": "monthly",
           "importance": "Contact & conversion page"
         },
         {
-          "url": "https://inchtomilez.com/about",
+          "url": "https://www.inchtomilez.com/about",
           "priority": 0.9,
           "changefreq": "monthly",
           "importance": "Company information"
         },
         {
-          "url": "https://inchtomilez.com/industries",
+          "url": "https://www.inchtomilez.com/industries",
           "priority": 0.9,
           "changefreq": "weekly",
           "importance": "Industries overview"
         },
         {
-          "url": "https://inchtomilez.com/blogs",
+          "url": "https://www.inchtomilez.com/blogs",
           "priority": 0.9,
           "changefreq": "daily",
           "importance": "Blog hub - fresh content"
@@ -48,7 +48,7 @@
     "high": {
       "description": "High priority - individual service pages",
       "count": 12,
-      "pattern": "https://inchtomilez.com/services/*",
+      "pattern": "https://www.inchtomilez.com/services/*",
       "priority": 0.8,
       "changefreq": "monthly",
       "services": [
@@ -69,7 +69,7 @@
     "medium": {
       "description": "Medium priority - industry pages",
       "count": 18,
-      "pattern": "https://inchtomilez.com/industries/*",
+      "pattern": "https://www.inchtomilez.com/industries/*",
       "priority": 0.8,
       "changefreq": "monthly",
       "industries": [
@@ -96,7 +96,7 @@
     "standard": {
       "description": "Standard priority - blog articles",
       "count": 224,
-      "pattern": "https://inchtomilez.com/blogs/*",
+      "pattern": "https://www.inchtomilez.com/blogs/*",
       "priority": 0.7,
       "changefreq": "weekly",
       "notes": "Blog posts updated regularly with fresh content"
@@ -105,7 +105,7 @@
       "description": "Utility pages - FAQs, legal, etc.",
       "pages": [
         {
-          "url": "https://inchtomilez.com/faqs",
+          "url": "https://www.inchtomilez.com/faqs",
           "priority": 0.8,
           "changefreq": "monthly"
         }
@@ -118,12 +118,12 @@
     "mobileOptimized": true,
     "https": true,
     "xmlSitemaps": [
-      "https://inchtomilez.com/sitemap.xml",
-      "https://inchtomilez.com/sitemap-index.xml",
-      "https://inchtomilez.com/sitemap-pages.xml",
-      "https://inchtomilez.com/sitemap-services.xml",
-      "https://inchtomilez.com/sitemap-industries.xml",
-      "https://inchtomilez.com/sitemap-blogs.xml"
+      "https://www.inchtomilez.com/sitemap.xml",
+      "https://www.inchtomilez.com/sitemap-index.xml",
+      "https://www.inchtomilez.com/sitemap-pages.xml",
+      "https://www.inchtomilez.com/sitemap-services.xml",
+      "https://www.inchtomilez.com/sitemap-industries.xml",
+      "https://www.inchtomilez.com/sitemap-blogs.xml"
     ],
     "structuredData": [
       "/ai/knowledge-base.json",

@@ -17,7 +17,7 @@
   },
   "instructions": {
     "step1": "Generate API key at https://www.bing.com/indexnow",
-    "step2": "Create file at root: https://inchtomilez.com/{api-key}.txt with content: {api-key}",
+    "step2": "Create file at root: https://www.inchtomilez.com/{api-key}.txt with content: {api-key}",
     "step3": "Submit URLs instantly when published using POST request",
     "example": {
       "method": "POST",
@@ -25,10 +25,10 @@
       "body": {
         "host": "inchtomilez.com",
         "key": "YOUR_API_KEY_HERE",
-        "keyLocation": "https://inchtomilez.com/YOUR_API_KEY_HERE.txt",
+        "keyLocation": "https://www.inchtomilez.com/YOUR_API_KEY_HERE.txt",
         "urlList": [
-          "https://inchtomilez.com/blogs/new-article",
-          "https://inchtomilez.com/services/digital-marketing"
+          "https://www.inchtomilez.com/blogs/new-article",
+          "https://www.inchtomilez.com/services/digital-marketing"
         ]
       }
     }
@@ -40,10 +40,10 @@
     "multipleEngines": "Submit once, indexed by multiple search engines"
   },
   "highPriorityPages": [
-    "https://inchtomilez.com/",
-    "https://inchtomilez.com/services",
-    "https://inchtomilez.com/blogs",
-    "https://inchtomilez.com/contact"
+    "https://www.inchtomilez.com/",
+    "https://www.inchtomilez.com/services",
+    "https://www.inchtomilez.com/blogs",
+    "https://www.inchtomilez.com/contact"
   ],
   "automationRecommendation": "Set up webhook to auto-submit new blog posts and service updates",
   "documentation": "https://www.indexnow.org/documentation"

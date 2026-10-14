@@ -17,7 +17,7 @@
     "contact": {
       "email": "hello@inchtomilez.com",
       "phone": "+91-731-4982000",
-      "website": "https://inchtomilez.com"
+      "website": "https://www.inchtomilez.com"
     },
     "social": {
       "facebook": "https://www.facebook.com/inchtomilez",
@@ -43,7 +43,7 @@
       "slug": "digital-marketing",
       "description": "Complete SEO, PPC, Social Media, Content & Email Marketing solutions",
       "includes": ["SEO", "PPC", "Social Media Marketing", "Content Marketing", "Email Marketing", "Analytics"],
-      "url": "https://inchtomilez.com/services/digital-marketing"
+      "url": "https://www.inchtomilez.com/services/digital-marketing"
     },
     {
       "id": 2,
@@ -51,7 +51,7 @@
       "slug": "advertising",
       "description": "Multi-channel campaigns across digital, print & outdoor media",
       "includes": ["Google Ads", "Social Ads", "Display Advertising", "Print Ads", "OOH Advertising"],
-      "url": "https://inchtomilez.com/services/advertising"
+      "url": "https://www.inchtomilez.com/services/advertising"
     },
     {
       "id": 3,
@@ -59,7 +59,7 @@
       "slug": "branding",
       "description": "Brand strategy, identity, logo design & complete guidelines",
       "includes": ["Brand Strategy", "Logo Design", "Visual Identity", "Brand Guidelines", "Rebranding"],
-      "url": "https://inchtomilez.com/services/branding"
+      "url": "https://www.inchtomilez.com/services/branding"
     },
     {
       "id": 4,
@@ -67,7 +67,7 @@
       "slug": "website-development",
       "description": "Web design, e-commerce, mobile apps & UI/UX excellence",
       "includes": ["Website Design", "E-commerce Development", "Mobile Apps", "UI/UX Design", "CMS Development"],
-      "url": "https://inchtomilez.com/services/website-development"
+      "url": "https://www.inchtomilez.com/services/website-development"
     },
     {
       "id": 5,
@@ -75,7 +75,7 @@
       "slug": "software-development",
       "description": "Custom software, enterprise apps, SaaS platforms & integrations",
       "includes": ["Custom Software", "SaaS Development", "Enterprise Applications", "API Integration", "Cloud Solutions"],
-      "url": "https://inchtomilez.com/services/software-development"
+      "url": "https://www.inchtomilez.com/services/software-development"
     },
     {
       "id": 6,
@@ -83,7 +83,7 @@
       "slug": "graphic-design",
       "description": "Graphics, animation, print design & creative content",
       "includes": ["Graphic Design", "Animation", "Print Design", "Illustration", "Infographics"],
-      "url": "https://inchtomilez.com/services/graphic-design"
+      "url": "https://www.inchtomilez.com/services/graphic-design"
     },
     {
       "id": 7,
@@ -91,7 +91,7 @@
       "slug": "media-production",
       "description": "Video production, photography, events & post-production",
       "includes": ["Video Production", "Photography", "Event Coverage", "Post-Production", "Corporate Videos"],
-      "url": "https://inchtomilez.com/services/media-production"
+      "url": "https://www.inchtomilez.com/services/media-production"
     },
     {
       "id": 8,
@@ -99,7 +99,7 @@
       "slug": "public-relations",
       "description": "PR strategy, media relations, crisis management & press releases",
       "includes": ["PR Strategy", "Media Relations", "Crisis Management", "Press Releases", "Reputation Management"],
-      "url": "https://inchtomilez.com/services/public-relations"
+      "url": "https://www.inchtomilez.com/services/public-relations"
     },
     {
       "id": 9,
@@ -107,7 +107,7 @@
       "slug": "political-campaigns",
       "description": "Campaign strategy, voter outreach, digital advocacy & ground operations",
       "includes": ["Campaign Strategy", "Voter Outreach", "Digital Advocacy", "Political Advertising", "Ground Operations"],
-      "url": "https://inchtomilez.com/services/political-campaigns"
+      "url": "https://www.inchtomilez.com/services/political-campaigns"
     },
     {
       "id": 10,
@@ -115,7 +115,7 @@
       "slug": "ooh-advertising",
       "description": "Billboards, transit ads, digital OOH & experiential marketing",
       "includes": ["Billboard Advertising", "Transit Ads", "Digital OOH", "Street Furniture", "Experiential Marketing"],
-      "url": "https://inchtomilez.com/services/ooh-advertising"
+      "url": "https://www.inchtomilez.com/services/ooh-advertising"
     },
     {
       "id": 11,
@@ -123,7 +123,7 @@
       "slug": "radio-newspapers",
       "description": "Radio spots, newspaper ads, magazine placements & media buying",
       "includes": ["Radio Advertising", "Newspaper Ads", "Magazine Placements", "Traditional Media Buying"],
-      "url": "https://inchtomilez.com/services/radio-newspapers"
+      "url": "https://www.inchtomilez.com/services/radio-newspapers"
     },
     {
       "id": 12,
@@ -131,7 +131,7 @@
       "slug": "product-marketing",
       "description": "Go-to-market strategy, positioning, launches & growth marketing",
       "includes": ["Go-to-Market Strategy", "Product Positioning", "Launch Campaigns", "Growth Marketing", "Market Research"],
-      "url": "https://inchtomilez.com/services/product-marketing"
+      "url": "https://www.inchtomilez.com/services/product-marketing"
     }
   ],
   "industries": [
@@ -141,7 +141,7 @@
       "slug": "healthcare",
       "description": "Hospitals, clinics, dental practices, and medical device companies",
       "clients": 45,
-      "url": "https://inchtomilez.com/industries/healthcare"
+      "url": "https://www.inchtomilez.com/industries/healthcare"
     },
     {
       "id": 2,
@@ -149,7 +149,7 @@
       "slug": "education",
       "description": "Schools, colleges, coaching institutes, and e-learning platforms",
       "clients": 38,
-      "url": "https://inchtomilez.com/industries/education"
+      "url": "https://www.inchtomilez.com/industries/education"
     },
     {
       "id": 3,
@@ -157,7 +157,7 @@
       "slug": "real-estate",
       "description": "Developers, builders, property consultants, and brokers",
       "clients": 52,
-      "url": "https://inchtomilez.com/industries/real-estate"
+      "url": "https://www.inchtomilez.com/industries/real-estate"
     },
     {
       "id": 4,
@@ -165,7 +165,7 @@
       "slug": "ecommerce",
       "description": "Online stores, marketplaces, and direct-to-consumer brands",
       "clients": 67,
-      "url": "https://inchtomilez.com/industries/ecommerce"
+      "url": "https://www.inchtomilez.com/industries/ecommerce"
     },
     {
       "id": 5,
@@ -173,7 +173,7 @@
       "slug": "technology",
       "description": "SaaS platforms, IT services, software companies, and startups",
       "clients": 41,
-      "url": "https://inchtomilez.com/industries/technology"
+      "url": "https://www.inchtomilez.com/industries/technology"
     },
     {
       "id": 6,
@@ -181,7 +181,7 @@
       "slug": "finance",
       "description": "Banks, NBFCs, insurance, fintech, and investment firms",
       "clients": 29,
-      "url": "https://inchtomilez.com/industries/finance"
+      "url": "https://www.inchtomilez.com/industries/finance"
     },
     {
       "id": 7,
@@ -189,7 +189,7 @@
       "slug": "hospitality",
       "description": "Hotels, resorts, restaurants, cafes, and cloud kitchens",
       "clients": 56,
-      "url": "https://inchtomilez.com/industries/hospitality"
+      "url": "https://www.inchtomilez.com/industries/hospitality"
     },
     {
       "id": 8,
@@ -197,7 +197,7 @@
       "slug": "automotive",
       "description": "Dealerships, service centers, and automotive accessories",
       "clients": 34,
-      "url": "https://inchtomilez.com/industries/automotive"
+      "url": "https://www.inchtomilez.com/industries/automotive"
     },
     {
       "id": 9,
@@ -205,7 +205,7 @@
       "slug": "fashion",
       "description": "Clothing brands, jewelry, accessories, and lifestyle products",
       "clients": 48,
-      "url": "https://inchtomilez.com/industries/fashion"
+      "url": "https://www.inchtomilez.com/industries/fashion"
     },
     {
       "id": 10,
@@ -213,7 +213,7 @@
       "slug": "legal",
       "description": "Law firms, corporate legal services, and compliance consultants",
       "clients": 22,
-      "url": "https://inchtomilez.com/industries/legal"
+      "url": "https://www.inchtomilez.com/industries/legal"
     },
     {
       "id": 11,
@@ -221,7 +221,7 @@
       "slug": "manufacturing",
       "description": "Industrial manufacturing, B2B suppliers, and distributors",
       "clients": 31,
-      "url": "https://inchtomilez.com/industries/manufacturing"
+      "url": "https://www.inchtomilez.com/industries/manufacturing"
     },
     {
       "id": 12,
@@ -229,7 +229,7 @@
       "slug": "agriculture",
       "description": "Agritech, farming equipment, organic products, and food processing",
       "clients": 18,
-      "url": "https://inchtomilez.com/industries/agriculture"
+      "url": "https://www.inchtomilez.com/industries/agriculture"
     },
     {
       "id": 13,
@@ -237,7 +237,7 @@
       "slug": "logistics",
       "description": "Shipping, courier services, warehousing, and supply chain",
       "clients": 26,
-      "url": "https://inchtomilez.com/industries/logistics"
+      "url": "https://www.inchtomilez.com/industries/logistics"
     },
     {
       "id": 14,
@@ -245,7 +245,7 @@
       "slug": "construction",
       "description": "Builders, contractors, interior design, and architecture",
       "clients": 35,
-      "url": "https://inchtomilez.com/industries/construction"
+      "url": "https://www.inchtomilez.com/industries/construction"
     },
     {
       "id": 15,
@@ -253,7 +253,7 @@
       "slug": "retail",
       "description": "Brick-and-mortar stores, franchise businesses, and local shops",
       "clients": 64,
-      "url": "https://inchtomilez.com/industries/retail"
+      "url": "https://www.inchtomilez.com/industries/retail"
     },
     {
       "id": 16,
@@ -261,7 +261,7 @@
       "slug": "energy",
       "description": "Solar, renewables, energy consultants, and utilities",
       "clients": 14,
-      "url": "https://inchtomilez.com/industries/energy"
+      "url": "https://www.inchtomilez.com/industries/energy"
     },
     {
       "id": 17,
@@ -269,7 +269,7 @@
       "slug": "non-profit",
       "description": "NGOs, charities, foundations, and social enterprises",
       "clients": 19,
-      "url": "https://inchtomilez.com/industries/non-profit"
+      "url": "https://www.inchtomilez.com/industries/non-profit"
     },
     {
       "id": 18,
@@ -277,7 +277,7 @@
       "slug": "sports-fitness",
       "description": "Gyms, sports clubs, fitness coaches, and wellness centers",
       "clients": 28,
-      "url": "https://inchtomilez.com/industries/sports-fitness"
+      "url": "https://www.inchtomilez.com/industries/sports-fitness"
     }
   ],
   "expertise": {
@@ -299,6 +299,6 @@
   "blog": {
     "totalArticles": 224,
     "categories": ["SEO & Local SEO", "PPC & Google Ads", "Social Media Marketing", "Content Marketing & Blogging", "Web Design & Development", "Branding & Design", "Video & Photography", "Email Marketing", "E-Commerce Marketing", "Legal & Compliance"],
-    "url": "https://inchtomilez.com/blogs"
+    "url": "https://www.inchtomilez.com/blogs"
   }
 }

@@ -8,16 +8,16 @@ Contact: tel:+91-9669988666
 Contact: tel:+91-9009970709
 Expires: 2026-11-02T23:59:59.000Z
 Preferred-Languages: en, hi
-Canonical: https://inchtomilez.com/.well-known/security.txt
+Canonical: https://www.inchtomilez.com/.well-known/security.txt
 
 # Company Information
-Policy: https://inchtomilez.com/privacy-policy
+Policy: https://www.inchtomilez.com/privacy-policy
 Acknowledgments: Thank you to security researchers who help keep our services secure
 
 # About
 Inchtomilez Digital Marketing & Advertising Agency
 Vijay Nagar, Indore, Madhya Pradesh 452010, India
-https://inchtomilez.com
+https://www.inchtomilez.com
 
 # Note for Security Researchers
 We take security seriously and appreciate responsible disclosure.

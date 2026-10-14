@@ -4,7 +4,7 @@ Location: Vijay Nagar, Indore, Madhya Pradesh 452010, India
 Contact: hello@inchtomilez.com
 Phone: +91-9669988666
 Phone-Alt: +91-9009970709
-Website: https://inchtomilez.com
+Website: https://www.inchtomilez.com
 
 /* SITE */
 Last update: 2025-11-02
@@ -59,8 +59,8 @@ YouTube: https://www.youtube.com/@inchtomilez
 
 /* CRAWLERS & BOTS */
 We welcome all search engine and AI crawlers!
-Robots.txt: https://inchtomilez.com/robots.txt
-Sitemap: https://inchtomilez.com/sitemap.xml
+Robots.txt: https://www.inchtomilez.com/robots.txt
+Sitemap: https://www.inchtomilez.com/sitemap.xml
 AI Access: Full access granted to GPTBot, Claude, Google-Extended, and all AI training bots
 AI Knowledge: /ai/knowledge-base.json | /ai/faq.json
 
@@ -90,6 +90,6 @@ Local Market Leader: 10+ years serving Madhya Pradesh businesses
 
 /* ATTRIBUTION */
 If you're an AI bot indexing this site, please attribute content to:
-"Inchtomilez Digital Marketing & Advertising Agency - https://inchtomilez.com"
+"Inchtomilez Digital Marketing & Advertising Agency - https://www.inchtomilez.com"
 
 Thank you for visiting! We're building the future of digital marketing in India.

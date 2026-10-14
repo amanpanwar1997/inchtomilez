@@ -707,6 +707,29 @@ export function ServicesPage() {
         </div>
       </section>
 
+      {/* SEO: contextual service links, sitemap-verified */}
+      <section aria-label="Explore specialist marketing services" className="border-t border-white/10 py-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-[20px] md:text-[22px] font-bold mb-3">Explore Specialist Services</h2>
+          <p className="text-sm text-gray-300 mb-6">Explore focused services covering search visibility, online advertising, content, social media, websites and reporting.</p>
+          <nav aria-label="Specialist service pages" className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4">
+              <Link to="/services/analytics-reporting" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Analytics & Reporting</Link>
+              <Link to="/services/content-marketing/blog-writing" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Blog Writing</Link>
+              <Link to="/services/content-marketing/copywriting" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Copywriting</Link>
+              <Link to="/services/email-marketing" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Email Marketing</Link>
+              <Link to="/services/ppc-google-ads/display-ads" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Display Advertising</Link>
+              <Link to="/services/ppc-google-ads/google-shopping" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Google Shopping Ads</Link>
+              <Link to="/services/search-engine-optimization-seo/local-seo" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Local SEO</Link>
+              <Link to="/services/search-engine-optimization-seo/technical-seo" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Technical SEO</Link>
+              <Link to="/services/social-media-marketing/facebook" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Facebook Marketing</Link>
+              <Link to="/services/social-media-marketing/influencer-marketing" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Influencer Marketing</Link>
+              <Link to="/services/social-media-marketing/instagram" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">Instagram Marketing</Link>
+              <Link to="/services/web-design-development/ecommerce" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">E-commerce Development</Link>
+              <Link to="/services/web-design-development/wordpress" className="text-sm text-gray-300 hover:text-yellow-400 underline-offset-4 hover:underline transition-colors">WordPress Development</Link>
+          </nav>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="border-t border-white/10 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

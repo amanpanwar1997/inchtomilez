@@ -1,5 +1,5 @@
 {
-  "host": "inchtomilez.com",
+  "host": "www.inchtomilez.com",
   "protocol": "https",
   "indexNowEnabled": true,
   "description": "IndexNow configuration for instant search engine indexing",
@@ -23,7 +23,7 @@
       "method": "POST",
       "url": "https://www.bing.com/indexnow",
       "body": {
-        "host": "inchtomilez.com",
+        "host": "www.inchtomilez.com",
         "key": "YOUR_API_KEY_HERE",
         "keyLocation": "https://www.inchtomilez.com/YOUR_API_KEY_HERE.txt",
         "urlList": [

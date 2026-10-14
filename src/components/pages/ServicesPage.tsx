@@ -657,7 +657,8 @@ export function ServicesPage() {
               cards={whyChooseUs.map(reason => ({
                 title: reason.title,
                 description: reason.description,
-                icon: reason.icon
+                icon: reason.icon,
+                link: '/contact'
               }))}
               mode="uniform"
               columns={3}

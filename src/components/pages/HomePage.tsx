@@ -1051,6 +1051,7 @@ export function HomePage() {
                 title: service.title,
                 description: service.description,
                 icon: service.icon,
+                link: routeTo.service('digital-marketing'),
               }))}
               mode="asymmetric"
               showBadges={false}
@@ -1428,6 +1429,7 @@ export function HomePage() {
                 title: service.title,
                 description: service.description,
                 icon: service.icon,
+                link: routeTo.service('ooh-advertising'),
               }))}
               mode="uniform"
               columns={4}
@@ -1525,6 +1527,7 @@ export function HomePage() {
                 title: activation.title,
                 description: activation.description,
                 icon: activation.icon,
+                link: routeTo.service('btl-activations'),
               }))}
               mode="uniform"
               columns={4}

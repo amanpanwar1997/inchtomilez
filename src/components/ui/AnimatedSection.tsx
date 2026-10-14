@@ -370,8 +370,8 @@ export function AnimatedCounter({
       }}
     >
       <motion.span
-        initial={{ textContent: from }}
-        whileInView={{ textContent: to }}
+        initial={{ textContent: from } as any}
+        whileInView={{ textContent: to } as any}
         viewport={{ once: true }}
         transition={{
           duration,

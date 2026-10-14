@@ -25,7 +25,7 @@
 import { useLocation } from 'react-router';
 import { services } from '../components/data/servicesData';
 import { industries } from '../components/data/industriesData';
-import { blogPosts } from '../components/data/blogData';
+import { getBlogBySlug } from '../components/data/blogData';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SITE CONFIGURATION
@@ -725,22 +725,14 @@ export function useMasterSEO() {
       // Blog post
       if (parts.length === 4) {
         const slug = parts[3];
-        const post = blogPosts.find(p => p.slug === slug);
+        const post = getBlogBySlug(slug);
         
         if (post) {
           seoData = {
             title: `${post.title} | Inchtomilez Blog`,
-            description: post.excerpt,
+            description: post.metaDescription,
             keywords: post.tags?.join(', ') || 'digital marketing',
-            ogType: 'article',
-            structuredData: [generateArticleSchema({
-              title: post.title,
-              description: post.excerpt,
-              image: post.image,
-              datePublished: post.publishedDate,
-              author: post.author,
-              category: post.category
-            })]
+            ogType: 'article'
           };
         }
       }

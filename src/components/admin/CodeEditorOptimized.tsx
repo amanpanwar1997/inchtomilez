@@ -210,7 +210,7 @@ export function CodeEditorOptimized({ filePath, onClose }: CodeEditorOptimizedPr
     }
   };
 
-  const handleEditorMount = (editor: any, monaco: typeof import("monaco-editor")) => {
+  const handleEditorMount = (editor: any, monaco: Parameters<NonNullable<import('@monaco-editor/react').EditorProps['onMount']>>[1]) => {
     editorRef.current = editor;
     
     // Add keyboard shortcuts

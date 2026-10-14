@@ -276,7 +276,7 @@ export function AdminSEOPageV3() {
       
       // Advanced Tabs
       case 'content':
-        return <AdvancedContentAnalyzer />;
+        return <AdvancedContentAnalyzer content="" title="" description="" keywords={[]} slug="" />;
       case 'keywords':
         return <AdvancedKeywordResearch />;
       case 'competitor':

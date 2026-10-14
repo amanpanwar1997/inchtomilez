@@ -869,7 +869,7 @@ async function performAdvancedAnalysis(
   const headingCounts = analyzeHeadings(content);
   
   // Generate scores
-  const overallScore = calculateOverallScore(wordCount, fleschScore, primaryDensity, headingCounts);
+  const overallScore = calculateOverallScore(wordCount, fleschScore, primaryDensity, headingCounts.h1Count === 1 ? 100 : 0);
   const eatScore = calculateEATScore(content, title, description);
   const qualityScore = calculateQualityScore(content, wordCount, sentenceCount);
   const relevanceScore = calculateRelevanceScore(content, keywords);

@@ -1,0 +1,8 @@
+# Inchtomilez - Search Engine Crawling
+# Canonical domain: https://www.inchtomilez.com
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://www.inchtomilez.com/sitemap.xml

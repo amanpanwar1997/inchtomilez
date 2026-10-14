@@ -1,0 +1,38 @@
+name: Deploy verified InchToMilez SSG
+
+# Manual production release only. Disable Vercel automatic Git production deployments
+# in the Vercel project settings to avoid a second deployment path.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install Chrome system libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libnspr4 libnss3 libgbm1 libatk1.0-0 libatk-bridge2.0-0 libasound2t64 libxcomposite1 libxdamage1 libxrandr2 libxfixes3
+      - name: Install exact project dependencies
+        run: npm ci --legacy-peer-deps
+      - name: Install Puppeteer Chrome
+        run: npx puppeteer browsers install chrome
+      - name: Prerender and verify sitemap routes
+        run: npm run build:seo
+      - name: Generate strict Vercel static output and 404 routing
+        run: node scripts/prepare-vercel-output.cjs
+      - name: Deploy verified prebuilt website
+        run: npx --yes vercel@63.1.2 deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN"

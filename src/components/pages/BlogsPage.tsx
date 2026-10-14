@@ -11,6 +11,7 @@ import { AutoCarousel } from '../ui/AutoCarousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { ROUTES } from '../../config/routes';
+import { getCategorySlug } from '../../utils/blogSlugGenerator';
 
 // Category metadata
 const categoryMetadata: Record<string, { icon: any; color: string }> = {
@@ -563,6 +564,19 @@ export function BlogsPage() {
                 <p className="text-[0.9375rem] leading-relaxed text-gray-300 mb-12 text-center">
                   Find articles that match your expertise
                 </p>
+
+                {/* SEO category navigation: sitemap-approved category landing pages */}
+                <nav aria-label="Blog category pages" className="mb-8 flex flex-wrap justify-center gap-2">
+                  {categories.filter((category) => ["analytics","branding","content-marketing","email-marketing","ppc","seo","social-media","web-design"].includes(getCategorySlug(category))).map((category) => (
+                    <Link
+                      key={category}
+                      to={`/blogs/${getCategorySlug(category)}`}
+                      className="rounded-lg border border-white/20 px-4 py-2 text-sm text-gray-200 transition-colors hover:border-yellow-500 hover:text-yellow-400"
+                    >
+                      {category} guides
+                    </Link>
+                  ))}
+                </nav>
 
                 <Accordion type="single" collapsible className="space-y-4">
                   {difficultyLevels.map((level) => {

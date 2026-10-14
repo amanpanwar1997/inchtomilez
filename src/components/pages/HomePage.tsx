@@ -1039,7 +1039,7 @@ export function HomePage() {
           <div className="max-w-6xl mx-auto relative z-10">
             <p className="text-xs font-medium uppercase tracking-wide text-yellow-500 mb-4 text-center">SEARCH. SCROLL. WATCH. SHOP. DECIDE.</p>
             <h2 className="text-[20px] md:text-[22px] font-bold mb-4 text-center leading-[1.3]">
-              Your Audience Is Already Online
+              Digital Marketing Services That Connect With Your Audience
             </h2>
             <p className="text-[0.9375rem] leading-relaxed text-gray-300 mb-12 text-center max-w-3xl mx-auto" style={{ lineHeight: 1.6 }}>
               We connect the moments where people discover, compare and choose — from <span className="text-yellow-500 font-semibold">search visibility to paid discovery</span>. 
@@ -1256,7 +1256,7 @@ export function HomePage() {
             <Search className="w-12 h-12 text-yellow-500 mx-auto mb-6" />
             
             <h2 className="text-[20px] md:text-[22px] font-bold mb-6 leading-[1.3]">
-              Be Found Before They Find Someone Else
+              SEO Services to Help Customers Find Your Business
             </h2>
             
             <p className="text-[0.9375rem] leading-relaxed text-gray-300 mb-8" style={{ lineHeight: 1.6 }}>
@@ -1264,7 +1264,7 @@ export function HomePage() {
             </p>
 
             <div className="glass-card p-8 text-left">
-              <h3 className="text-[1.375rem] font-medium mb-6 leading-[1.4]">The Search Foundation:</h3>
+              <h3 className="text-[1.375rem] font-medium mb-6 leading-[1.4]">Technical SEO, Local SEO and Helpful Content</h3>
               
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -1354,7 +1354,7 @@ export function HomePage() {
             <Share2 className="w-12 h-12 text-yellow-500 mx-auto mb-6" />
             
             <h2 className="text-[20px] md:text-[22px] font-bold mb-6 leading-[1.3]">
-              The Feed Never Stops. Give People A Reason To.
+              Social Media Marketing Built Around Your Audience
             </h2>
             
             <p className="text-[0.9375rem] leading-relaxed text-gray-300 mb-8 max-w-3xl mx-auto" style={{ lineHeight: 1.6 }}>
@@ -1363,7 +1363,7 @@ export function HomePage() {
             </p>
 
             <div className="inline-block glass-card p-6 mb-12">
-              <h3 className="text-[1.375rem] font-medium mb-4 leading-[1.4]">Where The Conversation Happens:</h3>
+              <h3 className="text-[1.375rem] font-medium mb-4 leading-[1.4]">Social Content, Campaigns and Community Engagement:</h3>
               <div className="flex flex-wrap justify-center gap-4">
                 <span className="bg-yellow-500 text-black px-4 py-2 rounded-lg text-[0.8125rem] font-semibold">Instagram</span>
                 <span className="bg-yellow-500 text-black px-4 py-2 rounded-lg text-[0.8125rem] font-semibold">Facebook</span>
@@ -2218,7 +2218,7 @@ export function HomePage() {
             <Globe className="w-12 h-12 text-yellow-500 mx-auto mb-6" />
             
             <h2 className="text-[20px] md:text-[22px] font-bold mb-6 leading-[1.3]">
-              Built Here. Designed To Travel.
+              Digital Marketing Agency in Indore, Serving Growing Brands
             </h2>
             
             <p className="text-[0.9375rem] leading-relaxed text-gray-300 mb-4" style={{ lineHeight: 1.6 }}>

@@ -4679,6 +4679,28 @@ export function ServiceDetailPage() {
 
       <StructuredData data={organizationSchema} />
 
+      {/* INCHTOMILEZ_SERVICE_SCHEMA_2026: visible, valid service detail routes only. */}
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          '@id': `${canonicalUrl}#service`,
+          url: canonicalUrl,
+          name: service.title,
+          description: service.metaDescription,
+          serviceType: service.title,
+          provider: { '@id': `${SITE_URL}/#organization` },
+          mainEntityOfPage: { '@id': `${canonicalUrl}#webpage` },
+          areaServed: [
+            { '@type': 'City', name: 'Indore' },
+            { '@type': 'City', name: 'Pune' },
+            { '@type': 'Country', name: 'India' },
+          ],
+        }}
+      />
+
+
+
       <StructuredData
         data={getWebPageSchema(
           service.title,

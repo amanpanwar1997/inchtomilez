@@ -439,6 +439,33 @@ export function IndustriesPage() {
         </div>
       </section>
 
+      {/* INCHTOMILEZ_VERIFIED_INDUSTRY_LINKS */}
+      <section aria-label="Explore industry marketing expertise" className="border-t border-white/10 py-10 md:py-14">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-[20px] md:text-[22px] font-bold mb-5">Explore Digital Marketing by Industry</h2>
+          <p className="text-sm text-gray-400 mb-6">Find relevant digital marketing services for your business sector.</p>
+          <nav aria-label="Industry marketing services" className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4">
+                <Link to="/industries/healthcare" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Healthcare Marketing</Link>
+                <Link to="/industries/education" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Education Marketing</Link>
+                <Link to="/industries/real-estate" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Real Estate Marketing</Link>
+                <Link to="/industries/technology" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Technology Marketing</Link>
+                <Link to="/industries/finance" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Finance Marketing</Link>
+                <Link to="/industries/hospitality" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Hospitality Marketing</Link>
+                <Link to="/industries/automotive" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Automotive Marketing</Link>
+                <Link to="/industries/fashion" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Fashion Marketing</Link>
+                <Link to="/industries/legal" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Legal Marketing</Link>
+                <Link to="/industries/manufacturing" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Manufacturing Marketing</Link>
+                <Link to="/industries/agriculture" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Agriculture Marketing</Link>
+                <Link to="/industries/logistics" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Logistics Marketing</Link>
+                <Link to="/industries/construction" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Construction Marketing</Link>
+                <Link to="/industries/retail" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Retail Marketing</Link>
+                <Link to="/industries/energy" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Energy Marketing</Link>
+                <Link to="/industries/non-profit" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Non-Profit Marketing</Link>
+                <Link to="/industries/sports" className="text-sm text-gray-300 hover:text-yellow-500 transition-colors">Sports & Fitness Marketing</Link>
+          </nav>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 md:py-24 relative overflow-hidden">
         {/* Outlined Background Text - Slides from RIGHT, stops at 25% */}

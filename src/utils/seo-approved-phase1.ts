@@ -9,8 +9,8 @@ export const APPROVED_PHASE1_METADATA: Record<string,{title:string;description:s
     "description": "Discover Inchtomilez, a digital marketing and advertising agency in Indore offering SEO, Google Ads, social media, branding and web development."
   },
   "/blogs": {
-    "title": "Digital Marketing Blog: SEO, PPC & Branding | InchToMilez",
-    "description": "Explore guides on SEO, Google Ads, social media, content marketing, branding and web development from the InchToMilez digital marketing team."
+    "title": "Digital Marketing Blog: SEO, PPC & Branding | Inchtomilez",
+    "description": "Explore guides on SEO, Google Ads, social media, content marketing, branding and web development from the Inchtomilez digital marketing team."
   },
   "/case-studies": {
     "title": "Digital Marketing Case Studies | Inchtomilez",
@@ -21,16 +21,16 @@ export const APPROVED_PHASE1_METADATA: Record<string,{title:string;description:s
     "description": "Contact Inchtomilez in Indore for SEO, Google Ads, Meta Ads, social media marketing, branding, web development and advertising enquiries."
   },
   "/faqs": {
-    "title": "Digital Marketing FAQs: SEO, PPC & More | InchToMilez",
-    "description": "Find answers about SEO, Google Ads, social media marketing, website development, project timelines and working with InchToMilez."
+    "title": "Digital Marketing FAQs: SEO, PPC & More | Inchtomilez",
+    "description": "Find answers about SEO, Google Ads, social media marketing, website development, project timelines and working with Inchtomilez."
   },
   "/industries": {
     "title": "Industry-Focused Digital Marketing | Inchtomilez",
     "description": "Explore digital marketing for healthcare, real estate, education, retail, finance and other industries, including SEO, paid ads and branding."
   },
   "/portfolio": {
-    "title": "Creative & Digital Marketing Portfolio | InchToMilez",
-    "description": "Explore InchToMilez portfolio work across creative design, branding, websites and digital marketing to understand our capabilities and approach."
+    "title": "Creative & Digital Marketing Portfolio | Inchtomilez",
+    "description": "Explore Inchtomilez portfolio work across creative design, branding, websites and digital marketing to understand our capabilities and approach."
   },
   "/services": {
     "title": "Marketing & Advertising Services in Indore | Inchtomilez",

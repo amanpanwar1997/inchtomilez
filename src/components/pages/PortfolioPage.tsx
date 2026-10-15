@@ -17,7 +17,7 @@ const portfolioItems = [
     services: ['Website Design', 'SEO', 'Google Ads'],
     results: '+300% patient inquiries',
     image: '/portfolio/healthcare-web.jpg',
-    link: '/case-studies/healthcare-growth'
+    link: '/case-studies'
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const portfolioItems = [
     services: ['Logo Design', 'Brand Guidelines', 'Packaging'],
     results: '+500% brand recognition',
     image: '/portfolio/fashion-branding.jpg',
-    link: '/case-studies/ecommerce-fashion'
+    link: '/case-studies'
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const portfolioItems = [
     services: ['Instagram Marketing', 'Content Creation', 'Photography'],
     results: '+350% online orders',
     image: '/portfolio/restaurant-social.jpg',
-    link: '/case-studies/restaurant-online-orders'
+    link: '/case-studies'
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ const portfolioItems = [
     services: ['Brand Video', 'Product Demo', 'Testimonials'],
     results: '+180% conversions',
     image: '/portfolio/tech-video.jpg',
-    link: '/case-studies/tech-b2b-leads'
+    link: '/case-studies'
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const portfolioItems = [
     services: ['Local SEO', 'Content Marketing', 'Link Building'],
     results: '#1 Google ranking',
     image: '/portfolio/realestate-seo.jpg',
-    link: '/case-studies/real-estate-leads'
+    link: '/case-studies'
   },
   {
     id: 6,

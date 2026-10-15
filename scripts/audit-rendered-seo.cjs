@@ -17,7 +17,7 @@ const records = [];
 function attr(tag, name) { const m = tag.match(new RegExp('\\b'+name+'\\s*=\\s*(?:"([^"]*)"|\'([^\']*)\')','i'));return m ? (m[1]??m[2]) : ''; }
 function textOf(html, tag) { const m=html.match(new RegExp('<'+tag+'\\b[^>]*>([\\s\\S]*?)<\\/'+tag+'\\s*>','gi'));return m||[]; }
 function report(url, why){issue.push({url,issue:why});}
-if (urls.length !== 308) report('sitemap','Expected 308 sitemap URLs; found '+urls.length);
+if (urls.length !== 311) report('sitemap','Expected 311 sitemap URLs; found '+urls.length);
 const seen = new Set();
 for(const url of urls){
  let pathname;
@@ -41,7 +41,7 @@ for(const url of urls){
  jsonLdTags.forEach((m,i)=>{try{JSON.parse(m[1]);}catch(e){report(url,'Invalid JSON-LD block '+(i+1)+': '+e.message);}});
  records.push({url,html: path.relative(root,found),titleCount:titleTags.length,h1Count:h1Tags.length,canonicalCount:canonicalTags.length,jsonLdCount:jsonLdTags.length});
 }
-const output = {generated:new Date().toISOString(), expected:308, sitemapUrls:urls.length, inspected:records.length, failures:issue.length, issues:issue, pages:records};
+const output = {generated:new Date().toISOString(), expected:311, sitemapUrls:urls.length, inspected:records.length, failures:issue.length, issues:issue, pages:records};
 const outPath=path.join(root,'rendered-seo-audit.json');
 fs.writeFileSync(outPath,JSON.stringify(output,null,2)+'\n');
 console.log(`RENDERED SEO GATE: ${records.length}/${urls.length} HTML pages inspected; ${issue.length} findings. Report: rendered-seo-audit.json`);

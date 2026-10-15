@@ -140,7 +140,7 @@ const industries = [
   {
     name: 'eCommerce',
     count: 93,
-    link: '/industries/ecommerce',
+    link: '/industries/fashion',
   },
   {
     name: 'Education',

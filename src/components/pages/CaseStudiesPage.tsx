@@ -24,7 +24,7 @@ const caseStudies = [
     services: ['Local SEO', 'Google Ads', 'Website Optimization'],
     testimonial: 'Inchtomilez transformed our digital presence completely. We now get 40+ quality inquiries daily.',
     image: '/case-studies/healthcare.jpg',
-    link: '/case-studies/healthcare-growth'
+    link: '/case-studies'
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ const caseStudies = [
     services: ['eCommerce Development', 'Social Media', 'Influencer Marketing'],
     testimonial: 'Our sales exploded! The new website and Instagram strategy were game-changers.',
     image: '/case-studies/ecommerce.jpg',
-    link: '/case-studies/ecommerce-fashion'
+    link: '/case-studies'
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ const caseStudies = [
     services: ['Web Design', 'PPC', 'Content Marketing'],
     testimonial: 'The quality of leads improved dramatically. We closed 15 premium properties in 5 months.',
     image: '/case-studies/realestate.jpg',
-    link: '/case-studies/real-estate-leads'
+    link: '/case-studies'
   },
   {
     id: 4,
@@ -81,7 +81,7 @@ const caseStudies = [
     services: ['Social Media', 'Photography', 'Digital Strategy'],
     testimonial: 'Our Instagram became a powerful sales channel. Orders tripled in just 3 months!',
     image: '/case-studies/restaurant.jpg',
-    link: '/case-studies/restaurant-online-orders'
+    link: '/case-studies'
   },
   {
     id: 5,
@@ -100,7 +100,7 @@ const caseStudies = [
     services: ['SEO', 'Email Marketing', 'Content Strategy'],
     testimonial: 'We went from struggling to fill classes to having waitlists. Incredible transformation!',
     image: '/case-studies/education.jpg',
-    link: '/case-studies/education-enrollment'
+    link: '/case-studies'
   },
   {
     id: 6,
@@ -119,7 +119,7 @@ const caseStudies = [
     services: ['B2B Marketing', 'LinkedIn Ads', 'Content Marketing'],
     testimonial: 'They understood B2B marketing perfectly. We closed our biggest deals ever.',
     image: '/case-studies/tech.jpg',
-    link: '/case-studies/tech-b2b-leads'
+    link: '/case-studies'
   }
 ];
 

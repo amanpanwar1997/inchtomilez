@@ -59,7 +59,7 @@ const sitemapSections = [
     links: [
       { name: 'Healthcare', url: '/industries/healthcare' },
       { name: 'Real Estate', url: '/industries/real-estate' },
-      { name: 'eCommerce', url: '/industries/ecommerce' },
+      { name: 'eCommerce', url: '/industries/fashion' },
       { name: 'Education', url: '/industries/education' },
       { name: 'Hospitality', url: '/industries/hospitality' },
       { name: 'Technology', url: '/industries/technology' },

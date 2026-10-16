@@ -1,8 +1,11 @@
-# Inchtomilez - Search Engine Crawling
-# Canonical domain: https://www.inchtomilez.com
+# InchToMilez — production robots.txt
+# Canonical host: https://www.inchtomilez.com
+# Public pages, services, industries, and articles are crawlable.
+# Access to private/admin routes must also be enforced server-side.
 
 User-agent: *
 Allow: /
+Disallow: /admin
 Disallow: /admin/
 
 Sitemap: https://www.inchtomilez.com/sitemap.xml

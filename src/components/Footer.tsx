@@ -454,9 +454,9 @@ export function Footer() {
           ================================================== */}
 
           <div>
-            <h4 className="text-lg font-medium text-[var(--foreground)] mb-6">
+            <h2 className="text-lg font-medium text-[var(--foreground)] mb-6">
               Services
-            </h4>
+            </h2>
 
             <ul className="space-y-3">
               {services.map((service) => (
@@ -483,9 +483,9 @@ export function Footer() {
           ================================================== */}
 
           <div>
-            <h4 className="text-lg font-medium text-[var(--foreground)] mb-6">
+            <h2 className="text-lg font-medium text-[var(--foreground)] mb-6">
               Industries
-            </h4>
+            </h2>
 
             <ul className="space-y-3">
               {industries.map((industry) => (
@@ -512,9 +512,9 @@ export function Footer() {
           ================================================== */}
 
           <div>
-            <h4 className="text-lg font-medium text-[var(--foreground)] mb-6">
+            <h2 className="text-lg font-medium text-[var(--foreground)] mb-6">
               Quick Links
-            </h4>
+            </h2>
 
             <ul className="space-y-3 mb-8">
               {quickLinks.map((link) => (
@@ -536,9 +536,9 @@ export function Footer() {
             </ul>
 
             <div>
-              <h4 className="text-lg font-medium text-white mb-6">
+              <h2 className="text-lg font-medium text-white mb-6">
                 Legal
-              </h4>
+              </h2>
 
               <ul className="space-y-3">
                 {legalLinks.map((link) => (
@@ -560,9 +560,9 @@ export function Footer() {
           ================================================== */}
 
           <div>
-            <h4 className="text-lg font-medium text-white mb-6">
+            <h2 className="text-lg font-medium text-white mb-6">
               Newsletter
-            </h4>
+            </h2>
 
             <p className="text-[0.8125rem] text-white/60 mb-6 leading-relaxed">
               Subscribe to get the latest marketing insights, industry trends,

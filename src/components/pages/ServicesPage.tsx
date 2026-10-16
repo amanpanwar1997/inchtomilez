@@ -516,7 +516,7 @@ export function ServicesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {serviceDetails.map((detail) => (
                 <div key={detail.service} className="glass-card p-6">
-                  <h4 className="text-lg font-medium mb-4 leading-[1.4]">{detail.service}</h4>
+                  <h3 className="text-lg font-medium mb-4 leading-[1.4]">{detail.service}</h3>
                   <ul className="space-y-2 mb-6">
                     {detail.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-[0.8125rem] text-gray-400" style={{ lineHeight: 1.6 }}>
@@ -567,7 +567,7 @@ export function ServicesPage() {
                 <div className="inline-block bg-yellow-500/10 text-yellow-500 px-3 py-1.5 rounded-lg mb-4 text-[0.8125rem] font-semibold">
                   {study.industry}
                 </div>
-                <h4 className="text-lg font-medium mb-4 leading-[1.4]">{study.client}</h4>
+                <h3 className="text-lg font-medium mb-4 leading-[1.4]">{study.client}</h3>
                 <div className="space-y-4 text-[0.8125rem]" style={{ lineHeight: 1.6 }}>
                   <div>
                     <p className="text-yellow-500 font-medium mb-1">Challenge:</p>

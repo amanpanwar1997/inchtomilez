@@ -502,9 +502,9 @@ export function BlogDetailPage() {
                         {relatedBlog.category}
                       </div>
                       <RelatedIcon className="mb-4 text-white icon-md" />
-                      <h4 className="text-lg font-medium mb-3 group-hover:text-yellow-500 transition-colors">
+                      <h3 className="text-lg font-medium mb-3 group-hover:text-yellow-500 transition-colors">
                         {relatedBlog.title}
-                      </h4>
+                      </h3>
                       <div className="flex items-center gap-4 mb-4">
                         <div className="flex items-center gap-2 text-[0.8125rem] text-gray-400">
                           <Clock className="icon-xs" />

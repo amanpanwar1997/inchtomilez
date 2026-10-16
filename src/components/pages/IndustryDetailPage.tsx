@@ -844,7 +844,7 @@ export function IndustryDetailPage() {
                 <div key={index} className="glass p-6 rounded-xl transition-all duration-200">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="flex-1">
-                      <h4 className="text-lg font-medium mb-2">{story.client}</h4>
+                      <h3 className="text-lg font-medium mb-2">{story.client}</h3>
                       <p className="text-[0.8125rem] text-yellow-500 font-semibold">{story.result}</p>
                     </div>
                     <div className="flex items-center gap-2">

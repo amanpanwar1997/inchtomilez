@@ -418,28 +418,28 @@ export function ContactPage() {
 
             <div className="space-y-6">
               <div className="glass-card p-6">
-                <h4 className="text-lg font-medium mb-3 leading-[1.4]">How long does it take to get started?</h4>
+                <h3 className="text-lg font-medium mb-3 leading-[1.4]">How long does it take to get started?</h3>
                 <p className="text-[0.8125rem] text-gray-400 leading-relaxed" style={{ lineHeight: 1.6 }}>
                   After our initial consultation and agreement on scope, most projects can start within 7-10 business days. We'll provide a detailed timeline during our first meeting.
                 </p>
               </div>
 
               <div className="glass-card p-6">
-                <h4 className="text-lg font-medium mb-3 leading-[1.4]">Do you work with businesses outside Indore?</h4>
+                <h3 className="text-lg font-medium mb-3 leading-[1.4]">Do you work with businesses outside Indore?</h3>
                 <p className="text-[0.8125rem] text-gray-400 leading-relaxed" style={{ lineHeight: 1.6 }}>
                   Yes, we serve clients across India and internationally. Most of our work is done remotely with regular video calls. Local clients can visit our office if preferred.
                 </p>
               </div>
 
               <div className="glass-card p-6">
-                <h4 className="text-lg font-medium mb-3 leading-[1.4]">What information should I prepare for the consultation?</h4>
+                <h3 className="text-lg font-medium mb-3 leading-[1.4]">What information should I prepare for the consultation?</h3>
                 <p className="text-[0.8125rem] text-gray-400 leading-relaxed" style={{ lineHeight: 1.6 }}>
                   Think about your business goals, target audience, budget range, and timeline. Any existing marketing materials or analytics are helpful but not required.
                 </p>
               </div>
 
               <div className="glass-card p-6">
-                <h4 className="text-lg font-medium mb-3 leading-[1.4]">What if I'm not sure which service I need?</h4>
+                <h3 className="text-lg font-medium mb-3 leading-[1.4]">What if I'm not sure which service I need?</h3>
                 <p className="text-[0.8125rem] text-gray-400 leading-relaxed" style={{ lineHeight: 1.6 }}>
                   That's completely normal. During our consultation, we'll discuss your goals and recommend the services that make sense for your situation and budget.
                 </p>

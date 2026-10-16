@@ -315,9 +315,9 @@ export function BlogsPage() {
                               {topic.category}
                             </span>
                           </div>
-                          <h4 className="text-lg font-medium mb-3 group-hover:text-yellow-500 transition-colors line-clamp-2">
+                          <h3 className="text-lg font-medium mb-3 group-hover:text-yellow-500 transition-colors line-clamp-2">
                             {topic.title}
-                          </h4>
+                          </h3>
                           <div className="flex flex-wrap items-center gap-3 mb-4">
                             <div className="flex items-center gap-2 text-[0.8125rem] text-gray-400">
                               <Clock className="icon-xs" />
@@ -417,7 +417,7 @@ export function BlogsPage() {
                               Trending
                             </div>
                             <Icon className="mb-4 text-white icon-md" />
-                            <h4 className="text-lg font-medium mb-3 line-clamp-2">{post.title}</h4>
+                            <h3 className="text-lg font-medium mb-3 line-clamp-2">{post.title}</h3>
                             <div className="flex items-center gap-4 mb-4">
                               <div className="flex items-center gap-2 text-[0.8125rem] text-gray-400">
                                 <Clock className="icon-xs" />
@@ -451,9 +451,9 @@ export function BlogsPage() {
                               Trending
                             </div>
                             <Icon className="mb-4 text-white icon-md" />
-                            <h4 className="text-lg font-medium mb-3 group-hover:text-yellow-500 transition-colors line-clamp-2">
+                            <h3 className="text-lg font-medium mb-3 group-hover:text-yellow-500 transition-colors line-clamp-2">
                               {topic.title}
-                            </h4>
+                            </h3>
                             <div className="flex items-center gap-4">
                               <div className="flex items-center gap-2 text-[0.8125rem] text-gray-400">
                                 <Clock className="icon-xs" />
@@ -517,9 +517,9 @@ export function BlogsPage() {
                                 to={getBlogUrl(topic)}
                                 className="glass p-6 rounded-xl transition-all duration-200 block"
                               >
-                                <h4 className="text-lg font-medium mb-3 hover:text-yellow-500 transition-colors">
+                                <h3 className="text-lg font-medium mb-3 hover:text-yellow-500 transition-colors">
                                   {topic.title}
-                                </h4>
+                                </h3>
                                 <div className="flex flex-wrap items-center gap-4">
                                   <div className="flex items-center gap-2 text-[0.8125rem] text-gray-400">
                                     <Clock className="icon-xs" />
@@ -615,9 +615,9 @@ export function BlogsPage() {
                                       {topic.category}
                                     </span>
                                   </div>
-                                  <h4 className="text-lg font-medium mb-3 hover:text-yellow-500 transition-colors">
+                                  <h3 className="text-lg font-medium mb-3 hover:text-yellow-500 transition-colors">
                                     {topic.title}
-                                  </h4>
+                                  </h3>
                                   <div className="flex flex-wrap items-center gap-4">
                                     <div className="flex items-center gap-2 text-[0.8125rem] text-gray-400">
                                       <Clock className="icon-xs" />

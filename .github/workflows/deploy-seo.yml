@@ -34,5 +34,7 @@ jobs:
         run: npm run build:seo
       - name: Generate strict Vercel static output and 404 routing
         run: node scripts/prepare-vercel-output.cjs
+      - name: Validate Vercel output routing and package
+        run: node scripts/verify-vercel-package.cjs
       - name: Deploy verified prebuilt website
         run: npx --yes vercel@63.1.2 deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN"

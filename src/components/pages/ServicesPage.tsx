@@ -11540,6 +11540,448 @@ export function ServicesPage() {
 
 
 
+{/* ============================================================
+   SECTION 15 — FINAL SERVICES CTA
+   INCHTOMILEZ / SERVICES PAGE
+
+   15.01 Section Identification
+   15.02 Oversized Animated Editorial Heading
+   15.03 Conversion Messaging
+   15.04 Primary & Secondary CTAs
+   15.05 Closing Brand Signature
+
+   UI/UX:
+   - Full-width editorial composition
+   - Animated heading reveal (CSS only)
+   - Outlined display typography
+   - Restrained line/grid details
+   - No redundant bento cards
+   - Existing dark background remains visible
+
+   Existing imports:
+   Link from "react-router"
+   ArrowRight from "lucide-react"
+
+   No new dependencies / No additional H1
+============================================================ */}
+
+<section
+  id="services-final-cta"
+  aria-labelledby="sfc-heading"
+  className="relative isolate overflow-hidden border-t border-white/[0.08] py-20 md:py-28"
+  style={{ fontFamily: "'Raleway', sans-serif" }}
+>
+  <style>{`
+    #services-final-cta,
+    #services-final-cta * {
+      box-sizing: border-box;
+    }
+
+    #services-final-cta .sfc-shell {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      width: 100%;
+      padding: 0 24px;
+      margin: 0 auto;
+    }
+
+    #services-final-cta .sfc-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+    }
+
+    #services-final-cta .sfc-eyebrow,
+    #services-final-cta .sfc-index {
+      margin: 0;
+      color: #adb4be;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .11em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    /* MAIN CTA STAGE */
+
+    #services-final-cta .sfc-stage {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(45px,8vw,110px) 0;
+    }
+
+    #services-final-cta .sfc-ghost {
+      position: absolute;
+      right: -1%;
+      top: 4%;
+      z-index: -1;
+      color: transparent;
+      font-size: clamp(100px,17vw,240px);
+      font-weight: 800;
+      letter-spacing: -.08em;
+      line-height: 1;
+      white-space: nowrap;
+      -webkit-text-stroke: 1px rgba(255,255,255,.035);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #services-final-cta .sfc-preheading {
+      display: block;
+      margin-bottom: 28px;
+      color: #aeb5be;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    #services-final-cta .sfc-heading {
+      max-width: 1120px;
+      margin: 0;
+      color: #fff !important;
+      font-size: clamp(42px,6.4vw,86px);
+      font-weight: 700;
+      line-height: 1.13;
+      letter-spacing: -.06em;
+      text-wrap: balance;
+    }
+
+    #services-final-cta .sfc-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(25px);
+      animation: sfc-reveal .8s ease-out forwards;
+    }
+
+    #services-final-cta .sfc-line:nth-child(2) {
+      animation-delay: .18s;
+    }
+
+    #services-final-cta .sfc-line:nth-child(3) {
+      animation-delay: .36s;
+    }
+
+    #services-final-cta .sfc-outline {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,.82);
+    }
+
+    @keyframes sfc-reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CONVERSION CONTENT */
+
+    #services-final-cta .sfc-conversion {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,.7fr);
+      align-items: end;
+      gap: 45px;
+      margin-top: 45px;
+    }
+
+    #services-final-cta .sfc-conversion-copy {
+      max-width: 625px;
+      margin: 0;
+      color: #c0c5cd;
+      font-size: clamp(14px,1.4vw,17px);
+      line-height: 1.9;
+    }
+
+    #services-final-cta .sfc-actions {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 11px;
+    }
+
+    #services-final-cta .sfc-btn-primary,
+    #services-final-cta .sfc-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 43px;
+      padding: 11px 17px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      white-space: nowrap;
+      transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
+    }
+
+    #services-final-cta .sfc-btn-primary {
+      border: 1px solid #eab308;
+      background: #eab308;
+      color: #050505;
+    }
+
+    #services-final-cta .sfc-btn-secondary {
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.055);
+      color: #fff;
+    }
+
+    #services-final-cta .sfc-btn-primary svg,
+    #services-final-cta .sfc-btn-secondary svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* CLOSING SIGNATURE */
+
+    #services-final-cta .sfc-bottom {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      align-items: center;
+      gap: 20px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,.15);
+    }
+
+    #services-final-cta .sfc-brand {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -.025em;
+    }
+
+    #services-final-cta .sfc-description {
+      color: #9fa6b0;
+      font-size: 11px;
+      line-height: 1.7;
+      letter-spacing: .03em;
+    }
+
+    #services-final-cta .sfc-endmark {
+      color: #8f96a0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      white-space: nowrap;
+    }
+
+    @media (hover:hover) and (pointer:fine) {
+      #services-final-cta .sfc-btn-primary:hover {
+        background: #facc15;
+        transform: translateY(-2px);
+      }
+
+      #services-final-cta .sfc-btn-secondary:hover {
+        background: rgba(255,255,255,.12);
+        border-color: rgba(255,255,255,.55);
+        transform: translateY(-2px);
+      }
+    }
+
+    #services-final-cta a:focus-visible {
+      outline: 2px solid #eab308;
+      outline-offset: 4px;
+    }
+
+    /* TABLET */
+
+    @media (max-width: 900px) {
+      #services-final-cta .sfc-conversion {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      #services-final-cta .sfc-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 640px) {
+      #services-final-cta .sfc-shell {
+        padding-inline: 18px;
+      }
+
+      #services-final-cta .sfc-heading {
+        font-size: clamp(37px,10vw,55px);
+        letter-spacing: -.052em;
+      }
+
+      #services-final-cta .sfc-preheading {
+        font-size: 10px;
+      }
+
+      #services-final-cta .sfc-stage {
+        padding: 55px 0;
+      }
+
+      #services-final-cta .sfc-ghost {
+        font-size: 110px;
+      }
+
+      #services-final-cta .sfc-conversion {
+        margin-top: 32px;
+        gap: 26px;
+      }
+
+      #services-final-cta .sfc-conversion-copy {
+        font-size: 13px;
+      }
+
+      #services-final-cta .sfc-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      #services-final-cta .sfc-btn-primary,
+      #services-final-cta .sfc-btn-secondary {
+        width: 100%;
+      }
+
+      #services-final-cta .sfc-bottom {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      #services-final-cta .sfc-endmark {
+        white-space: normal;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #services-final-cta .sfc-line {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+
+      #services-final-cta .sfc-btn-primary,
+      #services-final-cta .sfc-btn-secondary {
+        transition: none;
+      }
+    }
+  `}</style>
+
+  <div className="sfc-shell">
+
+    {/* 15.01 — TOP IDENTIFIER */}
+
+    <div className="sfc-topline">
+      <p className="sfc-eyebrow">
+        15 / LET'S MOVE FORWARD
+      </p>
+
+      <span className="sfc-index">
+        INCHTOMILEZ / SERVICES
+      </span>
+    </div>
+
+    {/* 15.02 — OVERSIZED EDITORIAL TYPOGRAPHY */}
+
+    <div className="sfc-stage">
+
+      <div className="sfc-ghost" aria-hidden="true">
+        NEXT
+      </div>
+
+      <span className="sfc-preheading">
+        A CONVERSATION IS A GOOD PLACE TO START
+      </span>
+
+      <h2 id="sfc-heading" className="sfc-heading">
+        <span className="sfc-line">
+          You've Seen
+        </span>
+
+        <span className="sfc-line sfc-outline">
+          What We Do.
+        </span>
+
+        <span className="sfc-line">
+          Now Let's Talk About You.
+        </span>
+      </h2>
+
+      {/* 15.03 — CONVERSION MESSAGE */}
+
+      <div className="sfc-conversion">
+
+        <p className="sfc-conversion-copy">
+          Whether your business needs digital
+          marketing, SEO, advertising, a stronger
+          brand identity or a better website, the
+          right place to begin is understanding
+          what you're trying to achieve.
+          <br />
+          <br />
+          Tell us about your business, your challenges
+          and the opportunities you're exploring.
+          We'll discuss how InchToMilez's capabilities
+          might fit your next move.
+        </p>
+
+        {/* 15.04 — PRIMARY / SECONDARY CTA */}
+
+        <div className="sfc-actions">
+          <Link
+            to="/contact"
+            className="sfc-btn-primary"
+          >
+            Let's Discuss Your Project
+            <ArrowRight aria-hidden="true" />
+          </Link>
+
+          <Link
+            to="/about"
+            className="sfc-btn-secondary"
+          >
+            Get to Know Us
+            <ArrowRight aria-hidden="true" />
+          </Link>
+        </div>
+
+      </div>
+
+    </div>
+
+    {/* 15.05 — FINAL BRAND SIGNATURE */}
+
+    <div className="sfc-bottom">
+
+      <div>
+        <span className="sfc-brand">
+          INCHTOMILEZ
+        </span>
+
+        <span className="sfc-description">
+          DIGITAL MARKETING · ADVERTISING · BRANDING ·
+          CREATIVE · TECHNOLOGY
+        </span>
+      </div>
+
+      <span className="sfc-endmark">
+        INDORE, INDIA / SERVICES
+      </span>
+
+    </div>
+
+  </div>
+</section>
+
+{/* ================= END SECTION 15 ================= */}
+
 
       
     </div>

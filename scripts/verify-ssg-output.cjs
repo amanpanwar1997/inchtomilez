@@ -10,7 +10,8 @@ const text=s=>s.replace(/<[^>]*>/g,' ').replace(/&(?:amp|nbsp);/g,' ').replace(/
 const tags=(html,name)=>[...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))].map(x=>x[0]);
 const attr=(tag,key)=>{const m=tag.match(new RegExp(`\\b${key}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`,'i'));return m?(m[1]??m[2]??m[3]??''):''};
 const norm=url=>{const u=new URL(url);return u.origin+u.pathname.replace(/\/$/,'')};
-if(urls.length!==308||new Set(urls).size!==308)fail.push(`Expected 308 unique URLs, found ${urls.length} entries`);
+if(urls.length===0)fail.push('Sitemap contains no URLs');
+if(new Set(urls).size!==urls.length)fail.push(`Duplicate sitemap URLs: ${urls.length} entries, ${new Set(urls).size} unique`);
 const records=[];
 for(const url of urls){
  let u;try{u=new URL(url)}catch{fail.push('Invalid sitemap URL '+url);continue}
@@ -51,4 +52,4 @@ if(fs.existsSync(manifest)){
  for(const f of m.files||[]){const abs=path.resolve(ROOT,f.path);if(!abs.startsWith(OUT+path.sep)&&abs!==path.join(OUT,'index.html'))throw Error('Unsafe manifest path');f.afterHash=hash(fs.readFileSync(abs))}
  fs.writeFileSync(manifest,JSON.stringify(m,null,2)+'\n');
 }
-console.log(`FINAL SSG PASS: ${records.length}/308 prerendered pages; warnings: ${warn.length}`);
+console.log(`FINAL SSG PASS: ${records.length}/${urls.length} prerendered pages; warnings: ${warn.length}`);

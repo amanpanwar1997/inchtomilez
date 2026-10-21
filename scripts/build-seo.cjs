@@ -26,3 +26,4 @@ run([path.join(ROOT,'scripts','verify-site-output.cjs')]);
 
 run([path.join(ROOT,'scripts','finalize-prerender-manifest.cjs')]);
 run([tool,'--verify']);
+run([path.join(ROOT,'scripts','verify-ssg-output.cjs')]);

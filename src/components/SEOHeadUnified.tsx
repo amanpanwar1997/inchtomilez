@@ -23,13 +23,10 @@
  */
 
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router';
 import { APPROVED_PHASE1_METADATA } from '../utils/seo-approved-phase1';
 import {
   useSEO,
   SITE_CONFIG,
-  normalizeSEOPath,
-  getStaticSEOEntry,
 } from '../utils/seo-master';
 
 
@@ -299,14 +296,26 @@ export function SEOHeadUnified(
     props.title?.trim() ||
     seo.title;
 
-  // The approved 58-route release is retained as an explicit, intentional
-  // override. Updating the database alone will NOT change those approved
-  // titles/descriptions until the approval layer is retired or synchronized.
-  // This preserves the live deployment's existing precedence.
-  const location = useLocation();
-  const activePath = normalizeSEOPath(location.pathname);
-  const approvedPhase1 = APPROVED_PHASE1_METADATA[activePath];
-  const syncedTitle = approvedPhase1?.title ?? title;
+  // INCHTOMILEZ_SYNC_TITLE_BEGIN
+  // Preserve explicitly relevant titles and leave deep-route SEO untouched.
+  // Only six top-level pages can replace a known generic homepage title.
+  const syncPath = typeof window !== 'undefined' ? (window.location.pathname.replace(/\/+$/, '') || '/') : '';
+  const syncPageTitles: Record<string,string> = {
+    "/about": "About Inchtomilez | Digital Marketing Agency in Indore",
+    "/blogs": "Digital Marketing Blog | SEO, Google Ads & Growth | Inchtomilez",
+    "/contact": "Contact Inchtomilez | Digital Marketing Agency in Indore",
+    "/faqs": "Digital Marketing FAQs | SEO, Ads & Services | Inchtomilez",
+    "/industries": "Industry-Focused Digital Marketing Solutions | Inchtomilez",
+    "/services": "Marketing & Advertising Services in Indore | Inchtomilez"
+};
+  const originalSyncedTitle = syncPageTitles[syncPath] && title === "Inchtomilez | Digital Marketing Agency in Indore"
+    ? syncPageTitles[syncPath]
+    : title;
+  // PHASE1_58_APPROVED: exact-route metadata wins over page props/fallback.
+  const approvedPhase1 = APPROVED_PHASE1_METADATA[syncPath];
+  const syncedTitle = approvedPhase1?.title ?? originalSyncedTitle;
+  // INCHTOMILEZ_SYNC_TITLE_END
+
 
   // ==========================================================================
   // DESCRIPTION
@@ -324,30 +333,53 @@ export function SEOHeadUnified(
     props.canonicalUrl ||
     props.canonical;
 
-  // Preserve explicit canonical aliases, except the known stale homepage
-  // fallback on a registered static route. The normalized route then wins.
-  // Unknown/dynamic routes still retain their explicit canonical choice.
-  const exactStaticEntry = getStaticSEOEntry(activePath);
-  const requestedIsHomepage = requestedCanonical
+  // INCHTOMILEZ_B2_ROUTE_CANONICAL_FIX
+  // Fix only six confirmed top-level pages whose SEO fallback points to home.
+  // Keep explicit canonicals and deep-route aliases unchanged.
+  const topLevelCanonicalPaths = new Set([
+    '/about', '/blogs', '/contact', '/faqs', '/industries', '/services'
+  ]);
+  const activePath = typeof window === 'undefined' ? '' : window.location.pathname.replace(/\/+$/, '') || '/';
+  const fallbackIsHome = normalizeCanonical(undefined, seo.canonicalUrl) === SITE_CONFIG.url;
+  // INCHTOMILEZ_B2_FOLLOWUP_HOME_CANONICAL_FIX
+  // The page's {...seo.meta} can explicitly pass the homepage canonical.
+  // Override it ONLY on these six top-level pages; all other aliases stay intact.
+  const requestedIsHome = requestedCanonical
     ? normalizeCanonical(requestedCanonical, seo.canonicalUrl) === SITE_CONFIG.url
     : false;
-  const safeRequestedCanonical =
-    activePath !== '/' && exactStaticEntry && requestedIsHomepage
-      ? activePath
-      : requestedCanonical;
+  const safeCanonical = topLevelCanonicalPaths.has(activePath) && (requestedIsHome || (!requestedCanonical && fallbackIsHome))
+    ? activePath
+    : requestedCanonical;
+  // INCHTOMILEZ_CANONICAL_11_ROUTE_FIX
+  // The listed paths are concrete pages rendered by App.tsx; older abbreviated
+  // paths are NOT the destination, so these pages need self canonicals.
+  const validatedServiceSubpagePaths = new Set([
+      "/services/search-engine-optimization-seo/local-seo",
+      "/services/search-engine-optimization-seo/technical-seo",
+      "/services/ppc-google-ads/google-shopping",
+      "/services/ppc-google-ads/display-ads",
+      "/services/social-media-marketing/instagram",
+      "/services/social-media-marketing/facebook",
+      "/services/social-media-marketing/influencer-marketing",
+      "/services/content-marketing/copywriting",
+      "/services/content-marketing/blog-writing",
+      "/services/web-design-development/ecommerce",
+      "/services/web-design-development/wordpress"
+  ]);
   const canonicalUrl = normalizeCanonical(
-    safeRequestedCanonical,
+    validatedServiceSubpagePaths.has(activePath) ? activePath : safeCanonical,
     seo.canonicalUrl
   );
+
 
   // ==========================================================================
   // OPEN GRAPH
   // ==========================================================================
 
   const ogType =
-    (props.ogType || seo.ogType) === 'article'
-      ? 'article'
-      : 'website';
+    props.ogType ||
+    seo.ogType ||
+    'website';
 
   const ogImage =
     normalizeImageUrl(
@@ -607,7 +639,7 @@ export function SEOHeadUnified(
             type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html:
-                JSON.stringify(schema).replace(/</g, '\\u003c'),
+                JSON.stringify(schema),
             }}
           />
         )

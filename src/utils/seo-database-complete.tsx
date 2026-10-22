@@ -3,7 +3,7 @@
  * INCHTOMILEZ - ADVANCED SEO DATABASE
  * ============================================================================
  *
- * Version: 5.1 - Backward-compatible SEO refinements
+ * Version: 5.0
  *
  * PURPOSE
  * -------
@@ -52,6 +52,10 @@ import type { SEOData } from "./seo-master";
 // ============================================================================
 // CONSTANTS
 // ============================================================================
+
+const BRAND = "Inchtomilez";
+
+const CITY = "Indore";
 
 
 // ============================================================================
@@ -113,9 +117,7 @@ function serviceSEO(
     description,
     keywords,
     h1,
-    // Open Graph standard types do not include "service".
-    // Keep Service JSON-LD via schemaType independently.
-    ogType: "website",
+    ogType: "service",
     schemaType: "service",
     category,
   };
@@ -1671,7 +1673,8 @@ export const COMPLETE_SEO_DATA: Record<string, SEOData> = {
  */
 
 if (
-  import.meta.env.DEV
+  typeof process !== "undefined" &&
+  process.env.NODE_ENV === "development"
 ) {
   Object.entries(
     COMPLETE_SEO_DATA
@@ -1679,9 +1682,9 @@ if (
     ([path, data]) => {
 
       if (
-        !data.title?.trim() ||
-        !data.description?.trim() ||
-        !data.h1?.trim()
+        !data.title ||
+        !data.description ||
+        !data.h1
       ) {
         console.warn(
           `[SEO] Incomplete metadata for route: ${path}`
@@ -1689,7 +1692,7 @@ if (
       }
 
       if (
-        data.title && data.title.length > 70
+        data.title.length > 70
       ) {
         console.warn(
           `[SEO] Long title (${data.title.length} chars): ${path}`
@@ -1697,23 +1700,11 @@ if (
       }
 
       if (
-        data.description && data.description.length > 180
+        data.description.length > 180
       ) {
         console.warn(
           `[SEO] Long description (${data.description.length} chars): ${path}`
         );
-      }
-
-      if (!path.startsWith("/") || (path.length > 1 && path.endsWith("/"))) {
-        console.warn(`[SEO] Non-normalized route key: ${path}`);
-      }
-
-      if (!Array.isArray(data.keywords)) {
-        console.warn(`[SEO] Invalid keywords array: ${path}`);
-      }
-
-      if (data.ogType && data.ogType !== "website" && data.ogType !== "article") {
-        console.warn(`[SEO] Unsupported Open Graph type: ${path} (${data.ogType})`);
       }
     }
   );

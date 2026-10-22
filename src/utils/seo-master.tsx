@@ -499,7 +499,7 @@ export function generateServiceSchema(
 
     description: seoData.description,
 
-    url: `${SITE_CONFIG.url}${normalizeSEOPath(path)}`, 
+    url: `${SITE_CONFIG.url}${normalizeSEOPath(path)}`,
 
     provider: {
       '@id': `${SITE_CONFIG.url}/#organization`

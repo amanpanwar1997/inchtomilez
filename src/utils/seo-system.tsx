@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * CONSOLIDATED SEO SYSTEM v3.1 - INCHTOMILEZ
+ * CONSOLIDATED SEO SYSTEM v5.7 - INCHTOMILEZ (NON-DESTRUCTIVE)
  * ============================================================================
  *
  * This file consolidates SEO functionality into one place:
@@ -21,6 +21,7 @@ import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { projectId, publicAnonKey } from "./supabase/info";
 import { getSEOConfig } from "./seoConfig";
+import { normalizeSEOPath } from "./seo-master";
 
 
 // ============================================================================
@@ -551,7 +552,7 @@ export function StructuredData({
                   schema,
                   null,
                   2
-                ),
+                ).replace(/</g, "\\u003c"),
             }}
           />
         )
@@ -979,8 +980,12 @@ export function slugToTitle(
 ): string {
   if (!slug) return "";
 
-  const decoded =
-    decodeURIComponent(slug);
+  let decoded = slug;
+  try {
+    decoded = decodeURIComponent(slug);
+  } catch {
+    // Preserve malformed percent-encoded slugs rather than throwing.
+  }
 
   const words =
     decoded
@@ -1124,204 +1129,147 @@ export interface SEOHookResult {
 
 
 /**
- * Main SEO hook
+ * Main SEO hook — BACKEND FIRST, STATIC FALLBACK.
  *
- * 1. Attempts to load SEO configuration from Supabase.
- * 2. If unavailable, falls back to local static SEO configuration.
+ * Existing behavior is deliberately preserved:
+ * 1. Initial render uses local SEO so SSR/prerender has deterministic metadata.
+ * 2. Browser fetches the existing Supabase SEO endpoint.
+ * 3. Valid backend page metadata takes precedence after hydration.
+ * 4. Backend errors or missing entries fall back to static metadata.
+ * 5. Organization and WebPage schema remain in EVERY hook result.
  *
- * Existing architecture intentionally preserved
- * to avoid breaking production behaviour.
+ * Improvements: cancellation on route changes/unmount, normalized path,
+ * safe backend parsing, partial-field fallback, keyword array/string support,
+ * canonical host validation, and consistent route-specific initial values.
+ *
+ * Note: backend-first hydration can still change prerendered metadata.
+ * This is intentional to retain the original production behavior.
  */
 
+function toKeywords(value: unknown, fallback: string[]): string[] {
+  if (Array.isArray(value)) {
+    return value.filter((v): v is string => typeof v === "string")
+      .map(v => v.trim()).filter(Boolean);
+  }
+  if (typeof value === "string") {
+    return value.split(",").map(v => v.trim()).filter(Boolean);
+  }
+  return fallback;
+}
+
+function nonempty(value: unknown, fallback: string): string {
+  return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
+
+function canonicalForPage(value: unknown, pathname: string): string {
+  const fallback = pathname === "/" ? SITE_URL : `${SITE_URL}${pathname}`;
+  if (typeof value !== "string" || !value.trim()) return fallback;
+  try {
+    const url = new URL(value.trim(), SITE_URL);
+    // Never permit an accidental external canonical from CMS input.
+    if (!["www.inchtomilez.com", "inchtomilez.com", "www.inchtomilez.in", "inchtomilez.in"].includes(url.hostname.toLowerCase())) {
+      return fallback;
+    }
+    const cleanPath = normalizeSEOPath(url.pathname);
+    return cleanPath === "/" ? SITE_URL : `${SITE_URL}${cleanPath}`;
+  } catch {
+    return fallback;
+  }
+}
+
+function buildSEOResult(
+  pathname: string,
+  backendPage?: Record<string, unknown>
+): SEOHookResult {
+  const staticConfig = getSEOConfig(pathname);
+  const title = nonempty(backendPage?.title, staticConfig.title);
+  const description = nonempty(backendPage?.description, staticConfig.description);
+  const h1 = nonempty(backendPage?.h1, staticConfig.h1 || title);
+  const keywords = toKeywords(backendPage?.keywords, staticConfig.keywords);
+  const canonical = canonicalForPage(
+    backendPage?.canonical ?? staticConfig.canonical,
+    pathname
+  );
+  const ogType = nonempty(backendPage?.ogType, staticConfig.ogType || "website");
+  const ogImage = nonempty(backendPage?.ogImage, staticConfig.ogImage || "");
+
+  return {
+    h1,
+    meta: {
+      title,
+      description,
+      keywords,
+      canonical,
+      ogType,
+      ogImage: ogImage || undefined,
+      // Preserve the original Organization + WebPage schema contract.
+      structuredData: [
+        organizationSchema,
+        getWebPageSchema(title, description, pathname),
+      ],
+    },
+    loading: false,
+  };
+}
+
 export function useSEO(): SEOHookResult {
-  const location =
-    useLocation();
+  const location = useLocation();
+  const pathname = normalizeSEOPath(location.pathname);
 
-  const [
-    seoData,
-    setSeoData,
-  ] =
-    useState<SEOHookResult>(() => {
-      // INCHTOMILEZ_CRITICAL_PAGES_LOCAL_SEO_INITIAL_STATE_V1
-      const initial = getSEOConfig(location.pathname);
-      return {
-        h1: initial.h1 || initial.title,
-        meta: {
-          title: initial.title,
-          description: initial.description,
-          keywords: initial.keywords,
-          canonical: initial.canonical || `${SITE_URL}${location.pathname}`,
-          ogType: initial.ogType || "website",
-          ogImage: initial.ogImage,
-          structuredData: [
-            organizationSchema,
-            getWebPageSchema(initial.title, initial.description, location.pathname),
-          ],
-        },
-        loading: false,
-      };
-    });
-
+  const [seoState, setSeoState] = useState<{
+    path: string;
+    data: SEOHookResult;
+  }>(() => ({ path: pathname, data: buildSEOResult(pathname) }));
 
   useEffect(() => {
-    const loadSEO =
-      async () => {
-        try {
-          // ================================================================
-          // LOAD FROM BACKEND FIRST
-          // ================================================================
+    let cancelled = false;
+    const controller = new AbortController();
 
-          const response =
-            await fetch(
-              `https://${projectId}.supabase.co/functions/v1/make-server-9c8e64e4/seo-system/page/get?slug=${location.pathname}`,
-              {
-                headers: {
-                  Authorization:
-                    `Bearer ${publicAnonKey}`,
-                },
+    const loadSEO = async () => {
+      // Retain Supabase GET functionality and existing Edge Function route.
+      try {
+        const url = `https://${projectId}.supabase.co/functions/v1/make-server-9c8e64e4/seo-system/page/get?slug=${encodeURIComponent(pathname)}`;
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${publicAnonKey}`,
+          },
+          signal: controller.signal,
+        });
+
+        if (response.ok) {
+          const result: unknown = await response.json();
+          if (result && typeof result === "object" && !Array.isArray(result)) {
+            const payload = result as Record<string, unknown>;
+            if (payload.success === true && payload.page &&
+                typeof payload.page === "object" && !Array.isArray(payload.page)) {
+              if (!cancelled) {
+                setSeoState({
+                  path: pathname,
+                  data: buildSEOResult(pathname, payload.page as Record<string, unknown>),
+                });
               }
-            );
-
-
-          if (
-            response.ok
-          ) {
-            const result =
-              await response.json();
-
-
-            if (
-              result.success &&
-              result.page
-            ) {
-              const page =
-                result.page;
-
-
-              setSeoData({
-                h1:
-                  page.h1 ||
-                  page.title ||
-                  "",
-
-                meta: {
-                  title:
-                    page.title ||
-                    "",
-
-                  description:
-                    page.description ||
-                    "",
-
-                  keywords:
-                    page.keywords
-                      ? page.keywords.split(
-                          ", "
-                        )
-                      : [],
-
-                  canonical:
-                    page.canonical ||
-                    `${SITE_URL}${location.pathname}`,
-
-                  ogType:
-                    page.ogType ||
-                    "website",
-
-                  ogImage:
-                    page.ogImage,
-
-                  structuredData: [
-                    organizationSchema,
-
-                    getWebPageSchema(
-                      page.title,
-                      page.description,
-                      location.pathname
-                    ),
-                  ],
-                },
-
-                loading:
-                  false,
-              });
-
               return;
             }
           }
-        } catch (
-          error
-        ) {
-          /**
-           * Backend not available.
-           *
-           * This is intentionally silent.
-           * Static configuration below becomes the fallback.
-           */
         }
+      } catch {
+        // Preserve original silent backend-error handling and static fallback.
+      }
 
+      if (!cancelled) {
+        setSeoState({ path: pathname, data: buildSEOResult(pathname) });
+      }
+    };
 
-        // ==================================================================
-        // STATIC SEO FALLBACK
-        // ==================================================================
+    void loadSEO();
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [pathname]);
 
-        const staticConfig =
-          getSEOConfig(
-            location.pathname
-          );
-
-
-        setSeoData({
-          h1:
-            staticConfig.h1,
-
-          meta: {
-            title:
-              staticConfig.title,
-
-            description:
-              staticConfig.description,
-
-            keywords:
-              staticConfig.keywords,
-
-            canonical:
-              ("canonical" in staticConfig &&
-              typeof (staticConfig as { canonical?: unknown }).canonical === "string"
-                ? (staticConfig as { canonical: string }).canonical
-                : `${SITE_URL}${location.pathname}`),
-
-            ogType:
-              staticConfig.ogType ||
-              "website",
-
-            ogImage:
-              staticConfig.ogImage,
-
-            structuredData: [
-              organizationSchema,
-
-              getWebPageSchema(
-                staticConfig.title,
-                staticConfig.description,
-                location.pathname
-              ),
-            ],
-          },
-
-          loading:
-            false,
-        });
-      };
-
-
-    loadSEO();
-  }, [
-    location.pathname,
-  ]);
-
-
-  return seoData;
+  // Avoid rendering the previous route's metadata for one render after navigation.
+  return seoState.path === pathname ? seoState.data : buildSEOResult(pathname);
 }
 
 
@@ -1352,4 +1300,3 @@ export default {
   slugToTitle,
   generateDescription,
   generateKeywords,
-};

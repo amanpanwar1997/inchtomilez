@@ -1,9 +1,11 @@
-
 name: Verify InchToMilez SSG
 
 on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
 
@@ -42,7 +44,6 @@ jobs:
 
       - name: Audit rendered technical SEO
         run: node scripts/audit-rendered-seo.cjs
-
       - name: Audit structured data graph
         run: node scripts/audit-schema-graph.cjs
 
@@ -55,7 +56,6 @@ jobs:
         with:
           name: inchtomilez-ssg-validation
           path: |
-            h1-update-report.json
             prerender-links-audit.json
             seo-prerender-report/
             seo-prerender-history/

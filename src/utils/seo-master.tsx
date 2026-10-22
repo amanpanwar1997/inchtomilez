@@ -1,7 +1,7 @@
 /**
  * 🎯 MASTER SEO SYSTEM - SINGLE SOURCE OF TRUTH
  *
- * Version: 4.1 - REAL BUSINESS DATA
+ * Version: 5.2 - INTERCONNECTIVITY AND CONSISTENCY REFINEMENT
  *
  * IMPORTANT:
  * Business identity data in this file must stay consistent with:
@@ -309,11 +309,46 @@ export const OFFICE_BRANCH_SCHEMAS = [
 ];
 
 // ============================================================================
+// CANONICAL ROUTE NORMALIZATION
+// ============================================================================
+
+export function normalizeSEOPath(pathname: string): string {
+  const withoutQuery = pathname.split(/[?#]/, 1)[0] || '/';
+  const withLeadingSlash = withoutQuery.startsWith('/')
+    ? withoutQuery
+    : `/${withoutQuery}`;
+  const collapsed = withLeadingSlash.replace(/\/{2,}/g, '/');
+  return collapsed === '/' ? '/' : collapsed.replace(/\/+$/, '');
+}
+
+export const BLOG_CATEGORY_PATHS = new Set([
+  '/blogs/seo',
+  '/blogs/ppc',
+  '/blogs/social-media',
+  '/blogs/content-marketing',
+  '/blogs/web-design',
+  '/blogs/branding',
+  '/blogs/email-marketing',
+  '/blogs/video-production',
+  '/blogs/analytics',
+  '/blogs/ecommerce'
+]);
+
+// ============================================================================
 // BREADCRUMB GENERATOR
 // ============================================================================
 
+function decodeURIComponentSafe(value: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
 export function generateBreadcrumbs(path: string) {
-  const segments = path.split('/').filter(Boolean);
+  const normalizedPath = normalizeSEOPath(path);
+  const segments = normalizedPath.split('/').filter(Boolean);
 
   const items: Array<{ '@type': string; position: number; name: string; item: string }> = [
     {
@@ -329,7 +364,7 @@ export function generateBreadcrumbs(path: string) {
   segments.forEach((segment, index) => {
     currentPath += `/${segment}`;
 
-    const name = segment
+    const name = decodeURIComponentSafe(segment)
       .split('-')
       .map(
         word =>
@@ -349,7 +384,7 @@ export function generateBreadcrumbs(path: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    '@id': `${SITE_CONFIG.url}${path}#breadcrumb`,
+    '@id': `${SITE_CONFIG.url}${normalizedPath === '/' ? '/' : normalizedPath}#breadcrumb`,
     itemListElement: items
   };
 }
@@ -394,8 +429,8 @@ export function generateArticleSchema(
   const schema: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    '@id': `${SITE_CONFIG.url}${path}#article`,
-    url: `${SITE_CONFIG.url}${path}`,
+    '@id': `${SITE_CONFIG.url}${normalizeSEOPath(path)}#article`,
+    url: `${SITE_CONFIG.url}${normalizeSEOPath(path)}`,
 
     headline: seoData.h1,
 
@@ -424,7 +459,7 @@ export function generateArticleSchema(
 
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_CONFIG.url}${path}`
+      '@id': `${SITE_CONFIG.url}${normalizeSEOPath(path)}`
     }
   };
 
@@ -458,13 +493,13 @@ export function generateServiceSchema(
     '@type': 'Service',
 
     '@id':
-      `${SITE_CONFIG.url}${path}#service`,
+      `${SITE_CONFIG.url}${normalizeSEOPath(path)}#service`,
 
     name: seoData.h1,
 
     description: seoData.description,
 
-    url: `${SITE_CONFIG.url}${path}`,
+    url: `${SITE_CONFIG.url}${normalizeSEOPath(path)}`,
 
     provider: {
       '@id': `${SITE_CONFIG.url}/#organization`
@@ -499,141 +534,98 @@ export function generateServiceSchema(
 // MASTER SEO HOOK
 // ============================================================================
 
+/**
+ * Resolve canonical URL without allowing unrelated hosts or unsafe schemes.
+ * Existing same-origin absolute canonicals are respected.
+ */
+export function resolveSEOCanonical(path: string, canonical?: string): string {
+  const normalizedPath = normalizeSEOPath(path);
+  const fallback = `${SITE_CONFIG.url}${normalizedPath}`;
+  if (!canonical || !canonical.trim()) return fallback;
+  try {
+    const parsed = new URL(canonical.trim(), `${SITE_CONFIG.url}/`);
+    if (parsed.protocol !== 'https:' || parsed.hostname !== new URL(SITE_CONFIG.url).hostname) {
+      return fallback;
+    }
+    return `${SITE_CONFIG.url}${normalizeSEOPath(parsed.pathname)}`;
+  } catch {
+    return fallback;
+  }
+}
+
+/**
+ * Pure resolver used by the React hook. Keeps the original hook return shape.
+ * Unknown URLs retain the legacy metadata fallback until router-level 404
+ * handling is implemented, but do not receive fabricated service/article data.
+ */
+export function resolveSEOForPath(pathname: string) {
+  const path = normalizeSEOPath(pathname);
+  const matchedSEO = Object.prototype.hasOwnProperty.call(SEO_DATABASE, path)
+    ? SEO_DATABASE[path]
+    : undefined;
+  const seoData = matchedSEO || SEO_DATABASE['/'];
+  const canonicalUrl = resolveSEOCanonical(path, matchedSEO?.canonical);
+  const breadcrumbs = generateBreadcrumbs(path);
+  const structuredData: Array<Record<string, unknown>> = [];
+
+  if (path === '/') {
+    structuredData.push(
+      SITELINKS_SEARCH_BOX,
+      ORGANIZATION_SCHEMA,
+      LOCAL_BUSINESS_SCHEMA,
+      ...OFFICE_BRANCH_SCHEMAS
+    );
+  } else if (matchedSEO) {
+    structuredData.push(breadcrumbs);
+    if (matchedSEO.schemaType === 'article' && !BLOG_CATEGORY_PATHS.has(path)) {
+      structuredData.push(generateArticleSchema(matchedSEO, path));
+    } else if (matchedSEO.schemaType === 'service') {
+      structuredData.push(generateServiceSchema(matchedSEO, path));
+    } else if (matchedSEO.schemaType === 'organization') {
+      structuredData.push(ORGANIZATION_SCHEMA);
+    }
+  }
+
+  return {
+    title: seoData.title,
+    description: seoData.description,
+    keywords: seoData.keywords.join(', '),
+    h1: seoData.h1,
+    canonicalUrl,
+    ogImage: seoData.ogImage || SITE_CONFIG.ogImage,
+    ogType: seoData.ogType === 'article' ? 'article' : 'website',
+    structuredData,
+    breadcrumbs
+  };
+}
+
 export function useSEO() {
   const location = useLocation();
+  const path = normalizeSEOPath(location.pathname);
+  return useMemo(() => resolveSEOForPath(path), [path]);
+}
 
-  const path = location.pathname;
+// ============================================================================
+// OPTIONAL ROUTE COVERAGE HELPERS
+// ============================================================================
 
-  return useMemo(() => {
-    /**
-     * Get SEO information for current URL.
-     *
-     * Existing fallback is retained so we do not risk
-     * breaking routes during this first SEO phase.
-     */
-    const seoData =
-      SEO_DATABASE[path] ||
-      SEO_DATABASE['/'];
+/**
+ * Read-only route lookup. This does not change useSEO's legacy fallback shape.
+ * Router/404 logic can use hasStaticSEOEntry without misclassifying dynamic
+ * blog posts as missing pages.
+ */
+export function hasStaticSEOEntry(pathname: string): boolean {
+  return Object.prototype.hasOwnProperty.call(
+    SEO_DATABASE,
+    normalizeSEOPath(pathname)
+  );
+}
 
-    /**
-     * Canonical URL.
-     */
-    const canonicalUrl =
-      path === '/'
-        ? SITE_CONFIG.url
-        : `${SITE_CONFIG.url}${path}`;
-
-    /**
-     * Breadcrumb schema.
-     */
-    const breadcrumbs =
-      generateBreadcrumbs(path);
-
-    /**
-     * Schemas injected for current page.
-     */
-    const structuredData: any[] = [
-      breadcrumbs
-    ];
-
-    // ------------------------------------------------------------------------
-    // HOMEPAGE
-    // ------------------------------------------------------------------------
-
-    if (path === '/') {
-      structuredData.push(
-        SITELINKS_SEARCH_BOX
-      );
-
-      structuredData.push(
-        ORGANIZATION_SCHEMA
-      );
-
-      structuredData.push(
-        LOCAL_BUSINESS_SCHEMA,
-        ...OFFICE_BRANCH_SCHEMAS
-      );
-    }
-
-    // ------------------------------------------------------------------------
-    // BLOG ARTICLES
-    // ------------------------------------------------------------------------
-
-    if (
-      seoData.schemaType === 'article' ||
-      path.startsWith('/blogs/')
-    ) {
-      const isBlogCategory =
-        /^\/blogs\/(seo|ppc|social-media|content-marketing|branding|video|web-design|email-marketing|analytics|trends)$/.test(
-          path
-        );
-
-      if (
-        path !== '/blogs' &&
-        !isBlogCategory
-      ) {
-        structuredData.push(
-          generateArticleSchema(
-            seoData,
-            path
-          )
-        );
-      }
-    }
-
-    // ------------------------------------------------------------------------
-    // SERVICES
-    // ------------------------------------------------------------------------
-
-    else if (
-      seoData.schemaType === 'service' ||
-      path.startsWith('/services/')
-    ) {
-      structuredData.push(
-        generateServiceSchema(
-          seoData,
-          path
-        )
-      );
-    }
-
-    // ------------------------------------------------------------------------
-    // ORGANIZATION PAGES
-    // ------------------------------------------------------------------------
-
-    else if (
-      seoData.schemaType ===
-      'organization'
-    ) {
-      structuredData.push(
-        ORGANIZATION_SCHEMA
-      );
-    }
-
-    return {
-      title: seoData.title,
-
-      description:
-        seoData.description,
-
-      keywords:
-        seoData.keywords.join(', '),
-
-      h1: seoData.h1,
-
-      canonicalUrl,
-
-      ogImage:
-        seoData.ogImage ||
-        SITE_CONFIG.ogImage,
-
-      ogType:
-        seoData.ogType ||
-        'website',
-
-      structuredData,
-
-      breadcrumbs
-    };
-  }, [path]);
+/**
+ * Returns an exact static entry, not the homepage fallback.
+ * Dynamic article SEO remains owned by BlogDetailPage.
+ */
+export function getStaticSEOEntry(pathname: string): SEOData | undefined {
+  const path = normalizeSEOPath(pathname);
+  return hasStaticSEOEntry(path) ? SEO_DATABASE[path] : undefined;
 }

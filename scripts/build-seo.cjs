@@ -20,8 +20,8 @@ if(fs.existsSync(path.join(report,'manifest.json'))){
 run([path.join(ROOT,'node_modules','vite','bin','vite.js'),'build']);
 run([tool,'--apply']);
 run([tool,'--verify']);
-run([path.join(ROOT,'update-sitemap-h1.cjs'),'--apply']);
-run([path.join(ROOT,'update-sitemap-h1.cjs'),'--verify']);
+
+
 run([path.join(ROOT,'scripts','verify-site-output.cjs')]);
 
 run([path.join(ROOT,'scripts','finalize-prerender-manifest.cjs')]);
